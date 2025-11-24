@@ -8,8 +8,8 @@ function Hero() {
   return (
     <div className="relative h-screen overflow-hidden">
       {/* Navigation Bar */}
-      <div className="absolute top-0 left-0 right-0 z-30 bg-gradient-to-b from-black/60 to-transparent backdrop-blur-md p-4 sm:p-6">
-        <div className="container mx-auto flex justify-end">
+      <div className="absolute top-0 left-0 right-0 z-30 bg-gradient-to-b from-black/60 to-transparent backdrop-blur-md p-4 sm:p-6 min-h-[72px] flex items-center">
+        <div className="container mx-auto flex justify-end w-full">
           <LanguageSwitcher />
         </div>
       </div>
