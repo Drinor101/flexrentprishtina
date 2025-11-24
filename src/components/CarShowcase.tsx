@@ -83,26 +83,28 @@ function CarShowcase() {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
+    <section id="cars" className="py-24 sm:py-28 bg-gradient-to-b from-white via-gray-50 to-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12 animate-fade-in-up">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        {/* Header */}
+        <div className="text-center mb-16 scroll-reveal">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-900 mb-6 tracking-tight">
             {t.cars.title}
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             {t.cars.subtitle}
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        {/* Filter Buttons */}
+        <div className="flex flex-wrap justify-center gap-3 mb-16 scroll-reveal">
           {['all', 'sedan', 'suv', 'luxury', 'electric'].map((category) => (
             <button
               key={category}
               onClick={() => setFilter(category)}
-              className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${
+              className={`px-6 py-3 rounded-full font-semibold text-sm sm:text-base transition-all duration-300 transform hover:scale-105 ${
                 filter === category
-                  ? 'bg-amber-400 text-black shadow-lg scale-105'
-                  : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
+                  ? 'bg-amber-400 text-black shadow-lg shadow-amber-400/30 scale-105'
+                  : 'bg-white text-gray-700 hover:bg-gray-100 border-2 border-gray-200 hover:border-amber-400/50'
               }`}
             >
               {filterLabels[category]}
@@ -110,39 +112,41 @@ function CarShowcase() {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Car Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 mb-24">
           {filteredCars.map((car, index) => (
             <CarCard key={car.id} car={car} index={index} />
           ))}
         </div>
 
-        <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center group">
-            <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-              <Users className="w-8 h-8 text-amber-600" />
+        {/* Features Section */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 scroll-reveal">
+          <div className="bg-white p-8 lg:p-10 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 text-center group border border-gray-100 hover:border-amber-400/30">
+            <div className="w-20 h-20 bg-gradient-to-br from-amber-100 to-amber-200 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg">
+              <Users className="w-10 h-10 text-amber-600" />
             </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">{t.cars.premiumService}</h3>
-            <p className="text-gray-600">
+            <h3 className="text-2xl font-bold text-gray-900 mb-3">{t.cars.premiumService}</h3>
+            <p className="text-gray-600 leading-relaxed">
               {t.cars.premiumServiceDesc}
             </p>
           </div>
 
-          <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center group">
-            <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-              <Briefcase className="w-8 h-8 text-amber-600" />
+          <div className="bg-white p-8 lg:p-10 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 text-center group border border-gray-100 hover:border-amber-400/30">
+            <div className="w-20 h-20 bg-gradient-to-br from-amber-100 to-amber-200 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg">
+              <Briefcase className="w-10 h-10 text-amber-600" />
             </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">{t.cars.businessReady}</h3>
-            <p className="text-gray-600">
+            <h3 className="text-2xl font-bold text-gray-900 mb-3">{t.cars.businessReady}</h3>
+            <p className="text-gray-600 leading-relaxed">
               {t.cars.businessReadyDesc}
             </p>
           </div>
 
-          <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center group">
-            <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-              <Zap className="w-8 h-8 text-amber-600" />
+          <div className="bg-white p-8 lg:p-10 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 text-center group border border-gray-100 hover:border-amber-400/30">
+            <div className="w-20 h-20 bg-gradient-to-br from-amber-100 to-amber-200 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg">
+              <Zap className="w-10 h-10 text-amber-600" />
             </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">{t.cars.quickBooking}</h3>
-            <p className="text-gray-600">
+            <h3 className="text-2xl font-bold text-gray-900 mb-3">{t.cars.quickBooking}</h3>
+            <p className="text-gray-600 leading-relaxed">
               {t.cars.quickBookingDesc}
             </p>
           </div>

@@ -2,7 +2,7 @@ import { useLanguage } from '../i18n/LanguageContext';
 import { Language } from '../i18n/translations';
 
 const languages: { code: Language; name: string; flag: string }[] = [
-  { code: 'en', name: 'English', flag: '🇬🇧' },
+  { code: 'en', name: 'English', flag: 'en' },
   { code: 'sq', name: 'Shqip', flag: '🇦🇱' },
   { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
   { code: 'fr', name: 'Français', flag: '🇫🇷' },
@@ -12,17 +12,18 @@ function LanguageSwitcher() {
   const { language, setLanguage } = useLanguage();
 
   return (
-    <div className="flex items-center gap-1">
+    <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md rounded-full p-1.5 border border-white/20">
       {languages.map((lang) => (
         <button
           key={lang.code}
           onClick={() => setLanguage(lang.code)}
-          className={`px-3 py-1 rounded-lg text-sm font-medium transition-all duration-300 ${
+          className={`px-4 py-2 rounded-full text-base font-semibold transition-all duration-300 transform hover:scale-110 ${
             language === lang.code
-              ? 'bg-amber-400 text-black shadow-md'
-              : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+              ? 'bg-amber-400 text-black shadow-lg shadow-amber-400/50 scale-105'
+              : 'text-white hover:bg-white/20'
           }`}
           title={lang.name}
+          aria-label={`Switch to ${lang.name}`}
         >
           {lang.flag}
         </button>

@@ -19,50 +19,54 @@ interface CarCardProps {
 function CarCard({ car, index }: CarCardProps) {
   return (
     <div
-      className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 group"
+      className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 group border border-gray-100 scroll-reveal"
       style={{
-        animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`,
+        animation: `fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${index * 0.1}s both`,
       }}
     >
-      <div className="relative overflow-hidden h-64">
+      <div className="relative overflow-hidden h-64 lg:h-72">
         <img
           src={car.image}
           alt={car.name}
-          className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+          className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
         />
-        <div className="absolute top-4 left-4 bg-amber-400 text-black px-4 py-2 rounded-full font-semibold text-sm">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div className="absolute top-5 left-5 bg-amber-400 text-black px-5 py-2.5 rounded-full font-bold text-sm shadow-lg backdrop-blur-sm">
           {car.category}
         </div>
       </div>
 
-      <div className="p-6">
-        <h3 className="text-2xl font-bold text-gray-900 mb-4">{car.name}</h3>
+      <div className="p-6 lg:p-8">
+        <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-5 group-hover:text-amber-600 transition-colors">
+          {car.name}
+        </h3>
 
-        <div className="flex items-center justify-between mb-6 text-gray-600">
-          <div className="flex items-center gap-2">
-            <Users className="w-5 h-5" />
-            <span>{car.passengers}</span>
+        <div className="flex items-center justify-between mb-8 text-gray-600 pb-6 border-b border-gray-200">
+          <div className="flex flex-col items-center gap-2">
+            <Users className="w-6 h-6 text-amber-500" />
+            <span className="text-sm font-semibold">{car.passengers} {car.passengers === 1 ? 'Passenger' : 'Passengers'}</span>
           </div>
-          <div className="flex items-center gap-2">
-            <Briefcase className="w-5 h-5" />
-            <span>{car.bags}</span>
+          <div className="flex flex-col items-center gap-2">
+            <Briefcase className="w-6 h-6 text-amber-500" />
+            <span className="text-sm font-semibold">{car.bags} {car.bags === 1 ? 'Bag' : 'Bags'}</span>
           </div>
-          <div className="flex items-center gap-2">
-            <Gauge className="w-5 h-5" />
-            <span>{car.transmission}</span>
+          <div className="flex flex-col items-center gap-2">
+            <Gauge className="w-6 h-6 text-amber-500" />
+            <span className="text-sm font-semibold">{car.transmission}</span>
           </div>
         </div>
 
         <div className="flex items-end justify-between">
           <div>
-            <span className="text-4xl font-bold text-gray-900">${car.price}</span>
-            <span className="text-gray-600 ml-2">/day</span>
+            <span className="text-4xl lg:text-5xl font-extrabold text-gray-900">${car.price}</span>
+            <span className="text-gray-600 ml-2 text-lg">/day</span>
           </div>
           <a
             href="#contact"
-            className="bg-black hover:bg-gray-800 text-white px-6 py-3 rounded-full font-medium transition-all duration-300 transform hover:scale-105 inline-block text-center"
+            className="bg-gradient-to-r from-black to-gray-800 hover:from-gray-800 hover:to-black text-white px-7 py-3.5 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-xl inline-flex items-center gap-2 group/btn"
           >
-            Book Now
+            <span>Book Now</span>
+            <span className="group-hover/btn:translate-x-1 transition-transform">→</span>
           </a>
         </div>
       </div>
