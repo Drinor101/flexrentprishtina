@@ -2,7 +2,7 @@ import { useLanguage } from '../i18n/LanguageContext';
 import { Language } from '../i18n/translations';
 
 const languages: { code: Language; name: string; flag: string }[] = [
-  { code: 'en', name: 'English', flag: 'EN' },
+  { code: 'en', name: 'English', flag: '🇺🇸' },
   { code: 'sq', name: 'Shqip', flag: '🇦🇱' },
   { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
   { code: 'fr', name: 'Français', flag: '🇫🇷' },
