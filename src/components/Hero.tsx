@@ -21,43 +21,43 @@ function Hero() {
       <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&w=1920')] bg-cover bg-center bg-no-repeat" />
 
       {/* Content */}
-      <div className="relative z-20 h-full flex items-center">
+      <div className="relative z-20 h-full flex items-center pt-16 sm:pt-0">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl animate-fade-in-up">
             {/* Logo & Title */}
-            <div className="flex items-center gap-4 mb-6">
-              <div className="relative">
-                <Car className="w-14 h-14 sm:w-16 sm:h-16 text-amber-400 drop-shadow-lg animate-float" />
+            <div className="flex flex-row items-center gap-3 sm:gap-4 mb-5 sm:mb-6">
+              <div className="relative flex-shrink-0">
+                <Car className="w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 text-amber-400 drop-shadow-lg animate-float" />
                 <div className="absolute inset-0 bg-amber-400/20 blur-xl rounded-full"></div>
               </div>
-              <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-white leading-tight tracking-tight">
+              <h1 className="text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.1] tracking-tight break-words">
                 {t.hero.title}
               </h1>
             </div>
 
             {/* Subtitle */}
-            <p className="text-xl sm:text-2xl md:text-3xl text-gray-100 mb-10 leading-relaxed font-light max-w-3xl">
+            <p className="text-base sm:text-xl md:text-2xl lg:text-3xl text-gray-100 mb-6 sm:mb-10 leading-relaxed font-light max-w-3xl">
               {t.hero.subtitle}
             </p>
 
             {/* Benefits Card */}
-            <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 sm:p-10 border border-white/20 shadow-2xl mb-10 animate-fade-in-delay hover:bg-white/15 transition-all duration-500">
-              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6 flex items-center gap-3">
-                <span className="w-1 h-8 bg-amber-400 rounded-full"></span>
-                {t.hero.whyChooseUs}
+            <div className="bg-white/10 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-10 border border-white/20 shadow-2xl mb-6 sm:mb-10 animate-fade-in-delay hover:bg-white/15 transition-all duration-500">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-4 sm:mb-6 flex items-center gap-2 sm:gap-3">
+                <span className="w-1 h-6 sm:h-8 bg-amber-400 rounded-full flex-shrink-0"></span>
+                <span>{t.hero.whyChooseUs}</span>
               </h2>
-              <ul className="space-y-4 text-gray-100">
-                <li className="flex items-start gap-4 group/item">
-                  <CheckCircle2 className="w-6 h-6 text-amber-400 mt-0.5 flex-shrink-0 group-hover/item:scale-110 transition-transform" />
-                  <span className="text-lg sm:text-xl leading-relaxed">{t.hero.benefit1}</span>
+              <ul className="space-y-3 sm:space-y-4 text-gray-100">
+                <li className="flex items-start gap-3 sm:gap-4 group/item">
+                  <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-amber-400 mt-0.5 flex-shrink-0 group-hover/item:scale-110 transition-transform" />
+                  <span className="text-sm sm:text-lg md:text-xl leading-relaxed">{t.hero.benefit1}</span>
                 </li>
-                <li className="flex items-start gap-4 group/item">
-                  <CheckCircle2 className="w-6 h-6 text-amber-400 mt-0.5 flex-shrink-0 group-hover/item:scale-110 transition-transform" />
-                  <span className="text-lg sm:text-xl leading-relaxed">{t.hero.benefit2}</span>
+                <li className="flex items-start gap-3 sm:gap-4 group/item">
+                  <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-amber-400 mt-0.5 flex-shrink-0 group-hover/item:scale-110 transition-transform" />
+                  <span className="text-sm sm:text-lg md:text-xl leading-relaxed">{t.hero.benefit2}</span>
                 </li>
-                <li className="flex items-start gap-4 group/item">
-                  <CheckCircle2 className="w-6 h-6 text-amber-400 mt-0.5 flex-shrink-0 group-hover/item:scale-110 transition-transform" />
-                  <span className="text-lg sm:text-xl leading-relaxed">{t.hero.benefit3}</span>
+                <li className="flex items-start gap-3 sm:gap-4 group/item">
+                  <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-amber-400 mt-0.5 flex-shrink-0 group-hover/item:scale-110 transition-transform" />
+                  <span className="text-sm sm:text-lg md:text-xl leading-relaxed">{t.hero.benefit3}</span>
                 </li>
               </ul>
             </div>
@@ -65,12 +65,12 @@ function Hero() {
             {/* CTA Button */}
             <a
               href="#contact"
-              className="group relative bg-amber-400 hover:bg-amber-500 text-black font-bold px-10 py-5 rounded-full inline-flex items-center gap-3 text-lg shadow-2xl hover:shadow-amber-400/50 transform hover:scale-105 active:scale-100 transition-all duration-300 overflow-hidden"
+              className="group relative bg-amber-400 hover:bg-amber-500 text-black font-bold px-6 sm:px-10 py-4 sm:py-5 rounded-full inline-flex items-center justify-center gap-2 sm:gap-3 text-base sm:text-lg shadow-2xl hover:shadow-amber-400/50 transform hover:scale-105 active:scale-100 transition-all duration-300 overflow-hidden w-full sm:w-auto"
             >
               <span className="absolute inset-0 bg-gradient-to-r from-amber-300 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-              <Phone className="w-6 h-6 relative z-10 group-hover:rotate-12 transition-transform" />
+              <Phone className="w-5 h-5 sm:w-6 sm:h-6 relative z-10 group-hover:rotate-12 transition-transform" />
               <span className="relative z-10">{t.hero.contactBtn}</span>
-              <span className="relative z-10 group-hover:translate-x-2 transition-transform duration-300 text-2xl">→</span>
+              <span className="relative z-10 group-hover:translate-x-2 transition-transform duration-300 text-xl sm:text-2xl">→</span>
             </a>
           </div>
         </div>

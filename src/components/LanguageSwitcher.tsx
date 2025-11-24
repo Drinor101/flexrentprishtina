@@ -2,7 +2,7 @@ import { useLanguage } from '../i18n/LanguageContext';
 import { Language } from '../i18n/translations';
 
 const languages: { code: Language; name: string; flag: string }[] = [
-  { code: 'en', name: 'English', flag: 'en' },
+  { code: 'en', name: 'English', flag: 'EN' },
   { code: 'sq', name: 'Shqip', flag: '🇦🇱' },
   { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
   { code: 'fr', name: 'Français', flag: '🇫🇷' },
@@ -19,7 +19,7 @@ function LanguageSwitcher() {
           onClick={() => setLanguage(lang.code)}
           className={`px-4 py-2 rounded-full text-base font-semibold transition-all duration-300 transform hover:scale-110 ${
             language === lang.code
-              ? 'bg-amber-400 text-black shadow-lg shadow-amber-400/50 scale-105'
+              ? 'bg-amber-400 text-black shadow-md'
               : 'text-white hover:bg-white/20'
           }`}
           title={lang.name}
