@@ -1,10 +1,13 @@
+import { useState } from 'react';
 import { Users, Briefcase, Gauge } from 'lucide-react';
+import CarCarousel from './CarCarousel';
 
 interface Car {
   id: number;
   name: string;
   category: string;
   image: string;
+  images?: string[];
   price: number;
   passengers: number;
   bags: number;
@@ -17,24 +20,33 @@ interface CarCardProps {
 }
 
 function CarCard({ car, index }: CarCardProps) {
+  const [isCarouselOpen, setIsCarouselOpen] = useState(false);
+  const carImages = car.images && car.images.length > 0 ? car.images : [car.image];
+
   return (
-    <div
-      className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 group border border-gray-100 scroll-reveal"
-      style={{
-        animation: `fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${index * 0.1}s both`,
-      }}
-    >
-      <div className="relative overflow-hidden h-64 lg:h-72">
-        <img
-          src={car.image}
-          alt={car.name}
-          className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-        <div className="absolute top-5 left-5 bg-amber-400 text-black px-5 py-2.5 rounded-full font-bold text-sm shadow-lg backdrop-blur-sm">
-          {car.category}
+    <>
+      <div
+        className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 group border border-gray-100 scroll-reveal"
+        style={{
+          animation: `fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${index * 0.1}s both`,
+        }}
+      >
+        <div className="relative overflow-hidden h-64 lg:h-72 cursor-pointer" onClick={() => setIsCarouselOpen(true)}>
+          <img
+            src={car.image}
+            alt={car.name}
+            className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div className="absolute top-5 left-5 bg-amber-400 text-black px-5 py-2.5 rounded-full font-bold text-sm shadow-lg backdrop-blur-sm">
+            {car.category}
+          </div>
+          {carImages.length > 1 && (
+            <div className="absolute top-5 right-5 bg-black/60 backdrop-blur-md text-white px-4 py-2 rounded-full font-semibold text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+              {carImages.length} Photos
+            </div>
+          )}
         </div>
-      </div>
 
       <div className="p-6 lg:p-8">
         <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-5 group-hover:text-amber-600 transition-colors">
@@ -70,7 +82,15 @@ function CarCard({ car, index }: CarCardProps) {
           </a>
         </div>
       </div>
-    </div>
+      </div>
+      <CarCarousel
+        images={carImages}
+        carName={car.name}
+        isOpen={isCarouselOpen}
+        onClose={() => setIsCarouselOpen(false)}
+        initialIndex={0}
+      />
+    </>
   );
 }
 

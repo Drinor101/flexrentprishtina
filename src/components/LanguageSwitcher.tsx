@@ -6,6 +6,7 @@ const languages: { code: Language; name: string; flag: string }[] = [
   { code: 'sq', name: 'Shqip', flag: '🇦🇱' },
   { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
   { code: 'fr', name: 'Français', flag: '🇫🇷' },
+  { code: 'it', name: 'Italiano', flag: '🇮🇹' },
 ];
 
 function LanguageSwitcher() {

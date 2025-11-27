@@ -20,7 +20,7 @@ function LocationSection() {
           {/* Map */}
           <div className="bg-gray-800 rounded-3xl overflow-hidden shadow-2xl h-[450px] lg:h-[500px] scroll-reveal border border-gray-700">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.681138079858!2d-73.98784368459395!3d40.74844097932839!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1234567890123"
+              src="https://www.google.com/maps?q=Astrit+Suli+15+Prishtina+10000+Kosovo&output=embed"
               width="100%"
               height="100%"
               style={{ border: 0 }}
@@ -41,8 +41,8 @@ function LocationSection() {
                 <div className="flex-1">
                   <h3 className="text-xl lg:text-2xl font-bold mb-3 text-white">{t.location.address}</h3>
                   <p className="text-gray-300 leading-relaxed text-lg">
-                    123 Luxury Drive, Premium District<br />
-                    New York, NY 10001
+                    no. 15 Astrit Suli<br />
+                    Prishtina 10000
                   </p>
                 </div>
               </div>
@@ -71,9 +71,14 @@ function LocationSection() {
                 </div>
                 <div className="flex-1">
                   <h3 className="text-xl lg:text-2xl font-bold mb-3 text-white">{t.location.phone}</h3>
-                  <a href="tel:+15551234567" className="text-gray-300 hover:text-amber-400 transition-colors text-lg">
-                    +1 (555) 123-4567
-                  </a>
+                  <div className="space-y-2">
+                    <a href="tel:+37745707005" className="block text-gray-300 hover:text-amber-400 transition-colors text-lg">
+                      +377 45 70 70 05
+                    </a>
+                    <a href="tel:+41799329445" className="block text-gray-300 hover:text-amber-400 transition-colors text-lg">
+                      +41 79 932 94 45
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -85,8 +90,8 @@ function LocationSection() {
                 </div>
                 <div className="flex-1">
                   <h3 className="text-xl lg:text-2xl font-bold mb-3 text-white">{t.location.email}</h3>
-                  <a href="mailto:info@premiumcarrental.com" className="text-gray-300 hover:text-amber-400 transition-colors text-lg">
-                    info@premiumcarrental.com
+                  <a href="mailto:info@flexrentprishtina.com" className="text-gray-300 hover:text-amber-400 transition-colors text-lg">
+                    info@flexrentprishtina.com
                   </a>
                 </div>
               </div>

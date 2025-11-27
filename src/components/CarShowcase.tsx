@@ -3,12 +3,50 @@ import { Users, Briefcase, Zap } from 'lucide-react';
 import CarCard from './CarCard';
 import { useLanguage } from '../i18n/LanguageContext';
 
+// Import car images from assets - Grouped by car
+// Car 1 - Mercedes S-Class
+import car1Img1 from '../assets/0a9e038e-8852-483c-8848-f7360abfe368.jpg';
+import car1Img2 from '../assets/0a9e038e-8852-483c-8848-f7360abfe368 (1).jpg';
+import car1Img3 from '../assets/144b429d-6fb2-4a19-ba97-2d855cbcb756.jpg';
+import car1Img4 from '../assets/1f3fc7e0-7d48-4cf8-8996-4842d2f8f4e6.jpg';
+
+// Car 2 - BMW X7
+import car2Img1 from '../assets/1fe7d105-1603-4fb9-ad01-3cc2c9dd1ab7.jpg';
+import car2Img2 from '../assets/20bb27ff-6ca0-431a-a0bc-ea249ef981b7.jpg';
+import car2Img3 from '../assets/30fadb0c-e574-4562-9ef3-6942e8a8e813.jpg';
+import car2Img4 from '../assets/32031875-fa66-465d-99be-fd1537840d9e.jpg';
+
+// Car 3 - Audi A8
+import car3Img1 from '../assets/32f9b537-7dba-4474-9d74-2f4c1f94b61f.jpg';
+import car3Img2 from '../assets/38593c86-68bd-401c-a918-373ecbcbeff5.jpg';
+import car3Img3 from '../assets/38593c86-68bd-401c-a918-373ecbcbeff5 (1).jpg';
+import car3Img4 from '../assets/3952e727-0ef7-49d2-80dd-1a409ebd2894.jpg';
+
+// Car 4 - Porsche Cayenne
+import car4Img1 from '../assets/3da429ad-df42-460e-9f3f-6f1176e08c63.jpg';
+import car4Img2 from '../assets/3efca3e1-df22-4031-a04c-7568b141823a.jpg';
+import car4Img3 from '../assets/3efca3e1-df22-4031-a04c-7568b141823a (1).jpg';
+import car4Img4 from '../assets/3efca3e1-df22-4031-a04c-7568b141823a (2).jpg';
+
+// Car 5 - Range Rover Sport
+import car5Img1 from '../assets/4e4ae1a7-fac4-42fa-9f7b-3807ca941725.jpg';
+import car5Img2 from '../assets/4e4ae1a7-fac4-42fa-9f7b-3807ca941725 (1).jpg';
+import car5Img3 from '../assets/63256f77-d2f1-413f-8a2b-fecc711c7e2f.jpg';
+import car5Img4 from '../assets/698db74f-3012-47ee-a81d-a175c0335dcd.jpg';
+
+// Car 6 - Tesla Model S
+import car6Img1 from '../assets/69d54a4c-d686-46ed-a14b-b881c0689e8a.jpg';
+import car6Img2 from '../assets/69d54a4c-d686-46ed-a14b-b881c0689e8a (1).jpg';
+import car6Img3 from '../assets/6a3f4052-245b-4a14-8a8c-e105b0fcc7f5.jpg';
+import car6Img4 from '../assets/6a3f4052-245b-4a14-8a8c-e105b0fcc7f5 (1).jpg';
+
 const cars = [
   {
     id: 1,
     name: 'Mercedes S-Class',
     category: 'Luxury Sedan',
-    image: 'https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: car1Img1,
+    images: [car1Img1, car1Img2, car1Img3, car1Img4],
     price: 150,
     passengers: 4,
     bags: 3,
@@ -18,7 +56,8 @@ const cars = [
     id: 2,
     name: 'BMW X7',
     category: 'Premium SUV',
-    image: 'https://images.pexels.com/photos/244206/pexels-photo-244206.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: car2Img1,
+    images: [car2Img1, car2Img2, car2Img3, car2Img4],
     price: 180,
     passengers: 7,
     bags: 4,
@@ -28,7 +67,8 @@ const cars = [
     id: 3,
     name: 'Audi A8',
     category: 'Executive',
-    image: 'https://images.pexels.com/photos/1545743/pexels-photo-1545743.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: car3Img1,
+    images: [car3Img1, car3Img2, car3Img3, car3Img4],
     price: 140,
     passengers: 5,
     bags: 3,
@@ -38,7 +78,8 @@ const cars = [
     id: 4,
     name: 'Porsche Cayenne',
     category: 'Sport SUV',
-    image: 'https://images.pexels.com/photos/3752169/pexels-photo-3752169.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: car4Img1,
+    images: [car4Img1, car4Img2, car4Img3, car4Img4],
     price: 200,
     passengers: 5,
     bags: 3,
@@ -48,7 +89,8 @@ const cars = [
     id: 5,
     name: 'Range Rover Sport',
     category: 'Luxury SUV',
-    image: 'https://images.pexels.com/photos/2920064/pexels-photo-2920064.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: car5Img1,
+    images: [car5Img1, car5Img2, car5Img3, car5Img4],
     price: 190,
     passengers: 5,
     bags: 4,
@@ -58,7 +100,8 @@ const cars = [
     id: 6,
     name: 'Tesla Model S',
     category: 'Electric Luxury',
-    image: 'https://images.pexels.com/photos/1592384/pexels-photo-1592384.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: car6Img1,
+    images: [car6Img1, car6Img2, car6Img3, car6Img4],
     price: 170,
     passengers: 5,
     bags: 2,
