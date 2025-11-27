@@ -1,4 +1,4 @@
-import { Car, Facebook, Instagram, Twitter, Linkedin } from 'lucide-react';
+import { Car, Facebook, Instagram, Twitter, Linkedin, Phone, MapPin } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
 
 function Footer() {
@@ -53,35 +53,32 @@ function Footer() {
             </ul>
           </div>
 
-          {/* Services */}
+          {/* Contact Info */}
           <div>
-            <h4 className="text-xl font-bold mb-6 text-white">{t.footer.services}</h4>
-            <ul className="space-y-3">
+            <h4 className="text-xl font-bold mb-6 text-white">{t.location.phone}</h4>
+            <ul className="space-y-4">
               <li>
-                <a href="#" className="text-white/80 hover:text-[#1E5BD7] transition-colors duration-300 text-lg flex items-center gap-2 group">
-                  <span className="w-0 h-0.5 bg-[#1E5BD7] group-hover:w-4 transition-all duration-300"></span>
-                  {t.footer.dailyRentals}
+                <a href="tel:+37745707005" className="text-white/80 hover:text-[#1E5BD7] transition-colors duration-300 text-lg flex items-start gap-3 group">
+                  <Phone className="w-5 h-5 mt-1 flex-shrink-0 text-[#1E5BD7]" />
+                  <span>+377 45 70 70 05</span>
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white/80 hover:text-[#1E5BD7] transition-colors duration-300 text-lg flex items-center gap-2 group">
-                  <span className="w-0 h-0.5 bg-[#1E5BD7] group-hover:w-4 transition-all duration-300"></span>
-                  {t.footer.corporatePackages}
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-white/80 hover:text-[#1E5BD7] transition-colors duration-300 text-lg flex items-center gap-2 group">
-                  <span className="w-0 h-0.5 bg-[#1E5BD7] group-hover:w-4 transition-all duration-300"></span>
-                  {t.footer.airportTransfer}
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-white/80 hover:text-[#1E5BD7] transition-colors duration-300 text-lg flex items-center gap-2 group">
-                  <span className="w-0 h-0.5 bg-[#1E5BD7] group-hover:w-4 transition-all duration-300"></span>
-                  {t.footer.chauffeurService}
+                <a href="tel:+41799329445" className="text-white/80 hover:text-[#1E5BD7] transition-colors duration-300 text-lg flex items-start gap-3 group">
+                  <Phone className="w-5 h-5 mt-1 flex-shrink-0 text-[#1E5BD7]" />
+                  <span>+41 79 932 94 45</span>
                 </a>
               </li>
             </ul>
+            
+            <h4 className="text-xl font-bold mb-6 text-white mt-8">{t.location.address}</h4>
+            <div className="flex items-start gap-3">
+              <MapPin className="w-5 h-5 mt-1 flex-shrink-0 text-[#1E5BD7]" />
+              <p className="text-white/80 text-lg leading-relaxed">
+                no. 15 Astrit Suli<br />
+                Prishtina 10000
+              </p>
+            </div>
           </div>
 
           {/* Social Media */}
