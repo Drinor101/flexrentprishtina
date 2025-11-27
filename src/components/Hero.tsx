@@ -8,14 +8,14 @@ function Hero() {
   return (
     <div className="relative h-screen overflow-hidden">
       {/* Navigation Bar */}
-      <div className="absolute top-0 left-0 right-0 z-30 bg-gradient-to-b from-black/60 to-transparent backdrop-blur-md p-4 sm:p-6 min-h-[72px] flex items-center">
+      <div className="absolute top-0 left-0 right-0 z-30 bg-gradient-to-b from-[#0A2A66]/90 to-transparent backdrop-blur-md p-4 sm:p-6 min-h-[72px] flex items-center">
         <div className="container mx-auto flex justify-end w-full">
           <LanguageSwitcher />
         </div>
       </div>
 
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/60 to-black/70 z-10" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0A2A66]/90 via-[#0A2A66]/70 to-[#12408C]/80 z-10" />
 
       {/* Background Image */}
       <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&w=1920')] bg-cover bg-center bg-no-repeat" />
@@ -27,8 +27,8 @@ function Hero() {
             {/* Logo & Title */}
             <div className="flex flex-row items-center gap-3 sm:gap-4 mb-5 sm:mb-6">
               <div className="relative flex-shrink-0">
-                <Car className="w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 text-amber-400 drop-shadow-lg animate-float" />
-                <div className="absolute inset-0 bg-amber-400/20 blur-xl rounded-full"></div>
+                <Car className="w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 text-white drop-shadow-lg animate-float" />
+                <div className="absolute inset-0 bg-white/20 blur-xl rounded-full"></div>
               </div>
               <h1 className="text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.1] tracking-tight break-words">
                 {t.hero.title}
@@ -43,20 +43,20 @@ function Hero() {
             {/* Benefits Card */}
             <div className="bg-white/10 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-10 border border-white/20 shadow-2xl mb-6 sm:mb-10 animate-fade-in-delay hover:bg-white/15 transition-all duration-500">
               <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-4 sm:mb-6 flex items-center gap-2 sm:gap-3">
-                <span className="w-1 h-6 sm:h-8 bg-amber-400 rounded-full flex-shrink-0"></span>
+                <span className="w-1 h-6 sm:h-8 bg-[#1E5BD7] rounded-full flex-shrink-0"></span>
                 <span>{t.hero.whyChooseUs}</span>
               </h2>
-              <ul className="space-y-3 sm:space-y-4 text-gray-100">
+              <ul className="space-y-3 sm:space-y-4 text-white">
                 <li className="flex items-start gap-3 sm:gap-4 group/item">
-                  <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-amber-400 mt-0.5 flex-shrink-0 group-hover/item:scale-110 transition-transform" />
+                  <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-[#1E5BD7] mt-0.5 flex-shrink-0 group-hover/item:scale-110 transition-transform" />
                   <span className="text-sm sm:text-lg md:text-xl leading-relaxed">{t.hero.benefit1}</span>
                 </li>
                 <li className="flex items-start gap-3 sm:gap-4 group/item">
-                  <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-amber-400 mt-0.5 flex-shrink-0 group-hover/item:scale-110 transition-transform" />
+                  <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-[#1E5BD7] mt-0.5 flex-shrink-0 group-hover/item:scale-110 transition-transform" />
                   <span className="text-sm sm:text-lg md:text-xl leading-relaxed">{t.hero.benefit2}</span>
                 </li>
                 <li className="flex items-start gap-3 sm:gap-4 group/item">
-                  <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-amber-400 mt-0.5 flex-shrink-0 group-hover/item:scale-110 transition-transform" />
+                  <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-[#1E5BD7] mt-0.5 flex-shrink-0 group-hover/item:scale-110 transition-transform" />
                   <span className="text-sm sm:text-lg md:text-xl leading-relaxed">{t.hero.benefit3}</span>
                 </li>
               </ul>
@@ -65,9 +65,9 @@ function Hero() {
             {/* CTA Button */}
             <a
               href="#contact"
-              className="group relative bg-amber-400 hover:bg-amber-500 text-black font-bold px-6 sm:px-10 py-4 sm:py-5 rounded-full inline-flex items-center justify-center gap-2 sm:gap-3 text-base sm:text-lg shadow-2xl hover:shadow-amber-400/50 transform hover:scale-105 active:scale-100 transition-all duration-300 overflow-hidden w-full sm:w-auto"
+              className="group relative bg-white hover:bg-[#1E5BD7] text-[#0A2A66] hover:text-white font-bold px-6 sm:px-10 py-4 sm:py-5 rounded-full inline-flex items-center justify-center gap-2 sm:gap-3 text-base sm:text-lg shadow-2xl hover:shadow-[#1E5BD7]/50 transform hover:scale-105 active:scale-100 transition-all duration-300 overflow-hidden w-full sm:w-auto"
             >
-              <span className="absolute inset-0 bg-gradient-to-r from-amber-300 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+              <span className="absolute inset-0 bg-gradient-to-r from-[#1E5BD7] to-[#12408C] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
               <Phone className="w-5 h-5 sm:w-6 sm:h-6 relative z-10 group-hover:rotate-12 transition-transform" />
               <span className="relative z-10">{t.hero.contactBtn}</span>
               <span className="relative z-10 group-hover:translate-x-2 transition-transform duration-300 text-xl sm:text-2xl">→</span>

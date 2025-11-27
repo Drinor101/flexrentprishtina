@@ -49,7 +49,7 @@ const cars = [
     images: [car1Img1, car1Img2, car1Img3, car1Img4],
     price: 150,
     passengers: 4,
-    bags: 3,
+    year: 2024,
     transmission: 'Automatic',
   },
   {
@@ -60,7 +60,7 @@ const cars = [
     images: [car2Img1, car2Img2, car2Img3, car2Img4],
     price: 180,
     passengers: 7,
-    bags: 4,
+    year: 2024,
     transmission: 'Automatic',
   },
   {
@@ -71,7 +71,7 @@ const cars = [
     images: [car3Img1, car3Img2, car3Img3, car3Img4],
     price: 140,
     passengers: 5,
-    bags: 3,
+    year: 2023,
     transmission: 'Automatic',
   },
   {
@@ -82,7 +82,7 @@ const cars = [
     images: [car4Img1, car4Img2, car4Img3, car4Img4],
     price: 200,
     passengers: 5,
-    bags: 3,
+    year: 2024,
     transmission: 'Automatic',
   },
   {
@@ -93,7 +93,7 @@ const cars = [
     images: [car5Img1, car5Img2, car5Img3, car5Img4],
     price: 190,
     passengers: 5,
-    bags: 4,
+    year: 2023,
     transmission: 'Automatic',
   },
   {
@@ -104,7 +104,7 @@ const cars = [
     images: [car6Img1, car6Img2, car6Img3, car6Img4],
     price: 170,
     passengers: 5,
-    bags: 2,
+    year: 2024,
     transmission: 'Automatic',
   },
 ];
@@ -130,10 +130,10 @@ function CarShowcase() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16 scroll-reveal">
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-900 mb-6 tracking-tight">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-[#0A0A0A] mb-6 tracking-tight">
             {t.cars.title}
           </h2>
-          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl text-[#0A0A0A]/70 max-w-3xl mx-auto leading-relaxed">
             {t.cars.subtitle}
           </p>
         </div>
@@ -146,8 +146,8 @@ function CarShowcase() {
               onClick={() => setFilter(category)}
               className={`px-6 py-3 rounded-full font-semibold text-sm sm:text-base transition-all duration-300 transform hover:scale-105 ${
                 filter === category
-                  ? 'bg-amber-400 text-black shadow-lg shadow-amber-400/30 scale-105'
-                  : 'bg-white text-gray-700 hover:bg-gray-100 border-2 border-gray-200 hover:border-amber-400/50'
+                  ? 'bg-[#0A2A66] text-white shadow-lg shadow-[#0A2A66]/30 scale-105'
+                  : 'bg-white text-[#0A0A0A] hover:bg-gray-50 border-2 border-gray-200 hover:border-[#1E5BD7]/50'
               }`}
             >
               {filterLabels[category]}
@@ -164,32 +164,32 @@ function CarShowcase() {
 
         {/* Features Section */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 scroll-reveal">
-          <div className="bg-white p-8 lg:p-10 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 text-center group border border-gray-100 hover:border-amber-400/30">
-            <div className="w-20 h-20 bg-gradient-to-br from-amber-100 to-amber-200 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg">
-              <Users className="w-10 h-10 text-amber-600" />
+          <div className="bg-white p-8 lg:p-10 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 text-center group border border-gray-100 hover:border-[#1E5BD7]/30">
+            <div className="w-20 h-20 bg-gradient-to-br from-[#0A2A66]/10 to-[#12408C]/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg">
+              <Users className="w-10 h-10 text-[#0A2A66]" />
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-3">{t.cars.premiumService}</h3>
-            <p className="text-gray-600 leading-relaxed">
+            <h3 className="text-2xl font-bold text-[#0A0A0A] mb-3">{t.cars.premiumService}</h3>
+            <p className="text-[#0A0A0A]/70 leading-relaxed">
               {t.cars.premiumServiceDesc}
             </p>
           </div>
 
-          <div className="bg-white p-8 lg:p-10 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 text-center group border border-gray-100 hover:border-amber-400/30">
-            <div className="w-20 h-20 bg-gradient-to-br from-amber-100 to-amber-200 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg">
-              <Briefcase className="w-10 h-10 text-amber-600" />
+          <div className="bg-white p-8 lg:p-10 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 text-center group border border-gray-100 hover:border-[#1E5BD7]/30">
+            <div className="w-20 h-20 bg-gradient-to-br from-[#0A2A66]/10 to-[#12408C]/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg">
+              <Briefcase className="w-10 h-10 text-[#0A2A66]" />
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-3">{t.cars.businessReady}</h3>
-            <p className="text-gray-600 leading-relaxed">
+            <h3 className="text-2xl font-bold text-[#0A0A0A] mb-3">{t.cars.businessReady}</h3>
+            <p className="text-[#0A0A0A]/70 leading-relaxed">
               {t.cars.businessReadyDesc}
             </p>
           </div>
 
-          <div className="bg-white p-8 lg:p-10 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 text-center group border border-gray-100 hover:border-amber-400/30">
-            <div className="w-20 h-20 bg-gradient-to-br from-amber-100 to-amber-200 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg">
-              <Zap className="w-10 h-10 text-amber-600" />
+          <div className="bg-white p-8 lg:p-10 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 text-center group border border-gray-100 hover:border-[#1E5BD7]/30">
+            <div className="w-20 h-20 bg-gradient-to-br from-[#0A2A66]/10 to-[#12408C]/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg">
+              <Zap className="w-10 h-10 text-[#0A2A66]" />
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-3">{t.cars.quickBooking}</h3>
-            <p className="text-gray-600 leading-relaxed">
+            <h3 className="text-2xl font-bold text-[#0A0A0A] mb-3">{t.cars.quickBooking}</h3>
+            <p className="text-[#0A0A0A]/70 leading-relaxed">
               {t.cars.quickBookingDesc}
             </p>
           </div>

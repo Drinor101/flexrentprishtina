@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Background circle with navy blue -->
+  <circle cx="50" cy="50" r="48" fill="#0A2A66"/>
+  
+  <!-- Car silhouette - simplified and modern -->
+  <path d="M20 65 L25 52 L35 50 L45 50 L55 50 L65 50 L75 52 L80 65 L80 70 L75 73 L70 73 L65 70 L60 70 L55 70 L50 70 L45 70 L40 70 L35 70 L30 73 L25 73 L20 70 Z" fill="#1E5BD7" stroke="#FFFFFF" stroke-width="1"/>
+  
+  <!-- Car windows -->
+  <rect x="38" y="52" width="10" height="7" fill="#FFFFFF" opacity="0.9" rx="1"/>
+  <rect x="52" y="52" width="10" height="7" fill="#FFFFFF" opacity="0.9" rx="1"/>
+  
+  <!-- Car wheels -->
+  <circle cx="38" cy="70" r="3.5" fill="#0A0A0A"/>
+  <circle cx="62" cy="70" r="3.5" fill="#0A0A0A"/>
+  <circle cx="38" cy="70" r="2" fill="#1E5BD7"/>
+  <circle cx="62" cy="70" r="2" fill="#1E5BD7"/>
+</svg>
+

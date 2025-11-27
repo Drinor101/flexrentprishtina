@@ -25,6 +25,11 @@ export interface Translations {
     quickBooking: string;
     quickBookingDesc: string;
     bookBtn: string;
+    photos: string;
+    passenger: string;
+    passengers: string;
+    bag: string;
+    bags: string;
   };
   location: {
     title: string;
@@ -43,7 +48,8 @@ export interface Translations {
     name: string;
     emailLabel: string;
     phoneLabel: string;
-    date: string;
+    dateFrom: string;
+    dateTo: string;
     message: string;
     submit: string;
     success: string;
@@ -91,6 +97,11 @@ export const translations: Record<Language, Translations> = {
       quickBooking: 'Instant Booking',
       quickBookingDesc: 'Streamlined reservation process with instant confirmation and flexible payment options',
       bookBtn: 'Book Now',
+      photos: 'Photos',
+      passenger: 'Passenger',
+      passengers: 'Passengers',
+      bag: 'Bag',
+      bags: 'Bags',
     },
     location: {
       title: 'Visit Our Location',
@@ -109,7 +120,8 @@ export const translations: Record<Language, Translations> = {
       name: 'Full Name',
       emailLabel: 'Email Address',
       phoneLabel: 'Phone Number',
-      date: 'Preferred Rental Date',
+      dateFrom: 'Rental Start Date',
+      dateTo: 'Rental End Date',
       message: 'Additional Details or Special Requests',
       submit: 'Submit Inquiry',
       success: 'Thank you for your inquiry! Our team will contact you within 24 hours to confirm your reservation.',
@@ -155,6 +167,11 @@ export const translations: Record<Language, Translations> = {
       quickBooking: 'Rezervim i Menjëhershëm',
       quickBookingDesc: 'Proces i thjeshtuar rezervimi me konfirmim të menjëhershëm dhe opsione pagese fleksibël',
       bookBtn: 'Rezervo Tani',
+      photos: 'Foto',
+      passenger: 'Pasagjer',
+      passengers: 'Pasagjerë',
+      bag: 'Çantë',
+      bags: 'Çanta',
     },
     location: {
       title: 'Vizitoni Vendndodhjen Tonë',
@@ -173,7 +190,8 @@ export const translations: Record<Language, Translations> = {
       name: 'Emri i Plotë',
       emailLabel: 'Adresa Email',
       phoneLabel: 'Numri i Telefonit',
-      date: 'Data e Preferuar e Qirasë',
+      dateFrom: 'Data e Fillimit të Qirasë',
+      dateTo: 'Data e Mbarimit të Qirasë',
       message: 'Detaje Shtesë ose Kërkesa Speciale',
       submit: 'Dërgoni Kërkesën',
       success: 'Faleminderit për kërkesën tuaj! Ekipi ynë do t\'ju kontaktojë brenda 24 orëve për të konfirmuar rezervimin tuaj.',
@@ -219,6 +237,11 @@ export const translations: Record<Language, Translations> = {
       quickBooking: 'Sofortige Buchung',
       quickBookingDesc: 'Optimierter Buchungsprozess mit sofortiger Bestätigung und flexiblen Zahlungsoptionen',
       bookBtn: 'Jetzt Buchen',
+      photos: 'Fotos',
+      passenger: 'Passagier',
+      passengers: 'Passagiere',
+      bag: 'Tasche',
+      bags: 'Taschen',
     },
     location: {
       title: 'Besuchen Sie Unseren Standort',
@@ -237,7 +260,8 @@ export const translations: Record<Language, Translations> = {
       name: 'Vollständiger Name',
       emailLabel: 'Email-Adresse',
       phoneLabel: 'Telefonnummer',
-      date: 'Bevorzugtes Mietdatum',
+      dateFrom: 'Mietbeginn',
+      dateTo: 'Mietende',
       message: 'Zusätzliche Details oder Sonderwünsche',
       submit: 'Anfrage Senden',
       success: 'Vielen Dank für Ihre Anfrage! Unser Team wird Sie innerhalb von 24 Stunden kontaktieren, um Ihre Reservierung zu bestätigen.',
@@ -283,6 +307,11 @@ export const translations: Record<Language, Translations> = {
       quickBooking: 'Réservation Instantanée',
       quickBookingDesc: 'Processus de réservation rationalisé avec confirmation instantanée et options de paiement flexibles',
       bookBtn: 'Réserver Maintenant',
+      photos: 'Photos',
+      passenger: 'Passager',
+      passengers: 'Passagers',
+      bag: 'Sac',
+      bags: 'Sacs',
     },
     location: {
       title: 'Visitez Notre Localisation',
@@ -301,7 +330,8 @@ export const translations: Record<Language, Translations> = {
       name: 'Nom Complet',
       emailLabel: 'Adresse Email',
       phoneLabel: 'Numéro de Téléphone',
-      date: 'Date de Location Préférée',
+      dateFrom: 'Date de Début de Location',
+      dateTo: 'Date de Fin de Location',
       message: 'Détails Supplémentaires ou Demandes Spéciales',
       submit: 'Envoyer la Demande',
       success: 'Merci pour votre demande! Notre équipe vous contactera dans les 24 heures pour confirmer votre réservation.',
@@ -347,6 +377,11 @@ export const translations: Record<Language, Translations> = {
       quickBooking: 'Prenotazione Istantanea',
       quickBookingDesc: 'Processo di prenotazione semplificato con conferma immediata e opzioni di pagamento flessibili',
       bookBtn: 'Prenota Ora',
+      photos: 'Foto',
+      passenger: 'Passeggero',
+      passengers: 'Passeggeri',
+      bag: 'Borsa',
+      bags: 'Borse',
     },
     location: {
       title: 'Visita la Nostra Sede',
@@ -365,7 +400,8 @@ export const translations: Record<Language, Translations> = {
       name: 'Nome Completo',
       emailLabel: 'Indirizzo Email',
       phoneLabel: 'Numero di Telefono',
-      date: 'Data di Noleggio Preferita',
+      dateFrom: 'Data di Inizio Noleggio',
+      dateTo: 'Data di Fine Noleggio',
       message: 'Dettagli Aggiuntivi o Richieste Speciali',
       submit: 'Invia Richiesta',
       success: 'Grazie per la tua richiesta! Il nostro team ti contatterà entro 24 ore per confermare la tua prenotazione.',

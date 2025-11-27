@@ -125,7 +125,7 @@ function CarCarousel({ images, carName, isOpen, onClose, initialIndex = 0 }: Car
                   onClick={() => goToSlide(index)}
                   className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
                     currentIndex === index
-                      ? 'border-amber-400 scale-110 shadow-lg shadow-amber-400/50'
+                      ? 'border-[#1E5BD7] scale-110 shadow-lg shadow-[#1E5BD7]/50'
                       : 'border-white/30 hover:border-white/60 opacity-70 hover:opacity-100'
                   }`}
                 >

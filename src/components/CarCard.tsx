@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Users, Briefcase, Gauge } from 'lucide-react';
+import { Users, Calendar, Gauge } from 'lucide-react';
 import CarCarousel from './CarCarousel';
+import { useLanguage } from '../i18n/LanguageContext';
 
 interface Car {
   id: number;
@@ -10,7 +11,7 @@ interface Car {
   images?: string[];
   price: number;
   passengers: number;
-  bags: number;
+  year: number;
   transmission: string;
 }
 
@@ -20,6 +21,7 @@ interface CarCardProps {
 }
 
 function CarCard({ car, index }: CarCardProps) {
+  const { t } = useLanguage();
   const [isCarouselOpen, setIsCarouselOpen] = useState(false);
   const carImages = car.images && car.images.length > 0 ? car.images : [car.image];
 
@@ -38,46 +40,46 @@ function CarCard({ car, index }: CarCardProps) {
             className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-          <div className="absolute top-5 left-5 bg-amber-400 text-black px-5 py-2.5 rounded-full font-bold text-sm shadow-lg backdrop-blur-sm">
+          <div className="absolute top-5 left-5 bg-[#0A2A66] text-white px-5 py-2.5 rounded-full font-bold text-sm shadow-lg backdrop-blur-sm">
             {car.category}
           </div>
           {carImages.length > 1 && (
             <div className="absolute top-5 right-5 bg-black/60 backdrop-blur-md text-white px-4 py-2 rounded-full font-semibold text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-              {carImages.length} Photos
+              {carImages.length} {t.cars.photos}
             </div>
           )}
         </div>
 
       <div className="p-6 lg:p-8">
-        <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-5 group-hover:text-amber-600 transition-colors">
+        <h3 className="text-2xl lg:text-3xl font-bold text-[#0A0A0A] mb-5 group-hover:text-[#1E5BD7] transition-colors">
           {car.name}
         </h3>
 
-        <div className="flex items-center justify-between mb-8 text-gray-600 pb-6 border-b border-gray-200">
+        <div className="flex items-center justify-between mb-8 text-[#0A0A0A]/70 pb-6 border-b border-gray-200">
           <div className="flex flex-col items-center gap-2">
-            <Users className="w-6 h-6 text-amber-500" />
-            <span className="text-sm font-semibold">{car.passengers} {car.passengers === 1 ? 'Passenger' : 'Passengers'}</span>
+            <Users className="w-6 h-6 text-[#0A2A66]" />
+            <span className="text-sm font-semibold">{car.passengers} {car.passengers === 1 ? t.cars.passenger : t.cars.passengers}</span>
           </div>
           <div className="flex flex-col items-center gap-2">
-            <Briefcase className="w-6 h-6 text-amber-500" />
-            <span className="text-sm font-semibold">{car.bags} {car.bags === 1 ? 'Bag' : 'Bags'}</span>
+            <Calendar className="w-6 h-6 text-[#0A2A66]" />
+            <span className="text-sm font-semibold">{car.year}</span>
           </div>
           <div className="flex flex-col items-center gap-2">
-            <Gauge className="w-6 h-6 text-amber-500" />
+            <Gauge className="w-6 h-6 text-[#0A2A66]" />
             <span className="text-sm font-semibold">{car.transmission}</span>
           </div>
         </div>
 
         <div className="flex items-end justify-between">
           <div>
-            <span className="text-4xl lg:text-5xl font-extrabold text-gray-900">${car.price}</span>
-            <span className="text-gray-600 ml-2 text-lg">/day</span>
+            <span className="text-4xl lg:text-5xl font-extrabold text-[#0A0A0A]">${car.price}</span>
+            <span className="text-[#0A0A0A]/70 ml-2 text-lg">/day</span>
           </div>
           <a
             href="#contact"
-            className="bg-gradient-to-r from-black to-gray-800 hover:from-gray-800 hover:to-black text-white px-7 py-3.5 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-xl inline-flex items-center gap-2 group/btn"
+            className="bg-gradient-to-r from-[#0A2A66] to-[#12408C] hover:from-[#12408C] hover:to-[#1E5BD7] text-white px-7 py-3.5 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-xl inline-flex items-center gap-2 group/btn"
           >
-            <span>Book Now</span>
+            <span>{t.cars.bookBtn}</span>
             <span className="group-hover/btn:translate-x-1 transition-transform">→</span>
           </a>
         </div>

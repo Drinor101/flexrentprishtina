@@ -20,7 +20,7 @@ function LanguageSwitcher() {
           onClick={() => setLanguage(lang.code)}
           className={`w-10 h-10 rounded-full text-base font-semibold transition-all duration-300 transform hover:scale-110 flex items-center justify-center ${
             language === lang.code
-              ? 'bg-amber-400 text-black shadow-md scale-105'
+              ? 'bg-white text-[#0A2A66] shadow-md scale-105'
               : 'text-white hover:bg-white/20'
           }`}
           title={lang.name}
