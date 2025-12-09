@@ -6,7 +6,7 @@ function Hero() {
   const { t } = useLanguage();
 
   return (
-    <div className="relative h-screen overflow-hidden">
+    <div className="relative h-screen overflow-y-auto overflow-x-hidden">
       {/* Navigation Bar */}
       <div className="absolute top-0 left-0 right-0 z-30 bg-gradient-to-b from-[#0A2A66]/90 to-transparent backdrop-blur-md p-4 sm:p-6 min-h-[72px] flex items-center">
         <div className="container mx-auto flex justify-end w-full">
@@ -21,8 +21,8 @@ function Hero() {
       <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&w=1920')] bg-cover bg-center bg-no-repeat" />
 
       {/* Content */}
-      <div className="relative z-20 h-full flex items-center pt-16 sm:pt-20 md:pt-24 lg:pt-28">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-20 min-h-full flex items-start sm:items-center pt-28 pb-12 sm:pt-20 md:pt-24 lg:pt-28 sm:pb-8">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="max-w-4xl animate-fade-in-up">
             {/* Logo & Title */}
             <div className="flex flex-row items-center gap-3 sm:gap-4 md:gap-5 mb-5 sm:mb-6 md:mb-8 relative z-10">
@@ -36,36 +36,36 @@ function Hero() {
             </div>
 
             {/* Subtitle */}
-            <p className="text-base sm:text-xl md:text-2xl lg:text-3xl text-gray-100 mb-6 sm:mb-10 leading-relaxed font-light max-w-3xl">
+            <p className="text-sm sm:text-xl md:text-2xl lg:text-3xl text-gray-100 mb-4 sm:mb-10 leading-relaxed font-light max-w-3xl">
               {t.hero.subtitle}
             </p>
 
             {/* Benefits Card */}
-            <div className="bg-white/10 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-10 border border-white/20 shadow-2xl mb-6 sm:mb-10 animate-fade-in-delay hover:bg-white/15 transition-all duration-500">
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-4 sm:mb-6 flex items-center gap-2 sm:gap-3">
-                <span className="w-1 h-6 sm:h-8 bg-[#1E5BD7] rounded-full flex-shrink-0"></span>
+            <div className="bg-white/10 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-4 sm:p-8 md:p-10 border border-white/20 shadow-2xl mb-6 sm:mb-10 animate-fade-in-delay hover:bg-white/15 transition-all duration-500">
+              <h2 className="text-lg sm:text-2xl md:text-3xl font-bold text-white mb-3 sm:mb-6 flex items-center gap-2 sm:gap-3">
+                <span className="w-1 h-5 sm:h-8 bg-[#1E5BD7] rounded-full flex-shrink-0"></span>
                 <span>{t.hero.whyChooseUs}</span>
               </h2>
-              <ul className="space-y-3 sm:space-y-4 text-white">
-                <li className="flex items-start gap-3 sm:gap-4 group/item">
-                  <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-[#1E5BD7] mt-0.5 flex-shrink-0 group-hover/item:scale-110 transition-transform" />
-                  <span className="text-sm sm:text-lg md:text-xl leading-relaxed">{t.hero.benefit1}</span>
+              <ul className="space-y-2.5 sm:space-y-4 text-white">
+                <li className="flex items-start gap-2.5 sm:gap-4 group/item">
+                  <CheckCircle2 className="w-4 h-4 sm:w-6 sm:h-6 text-[#1E5BD7] mt-0.5 flex-shrink-0 group-hover/item:scale-110 transition-transform" />
+                  <span className="text-xs sm:text-lg md:text-xl leading-relaxed">{t.hero.benefit1}</span>
                 </li>
-                <li className="flex items-start gap-3 sm:gap-4 group/item">
-                  <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-[#1E5BD7] mt-0.5 flex-shrink-0 group-hover/item:scale-110 transition-transform" />
-                  <span className="text-sm sm:text-lg md:text-xl leading-relaxed">{t.hero.benefit2}</span>
+                <li className="flex items-start gap-2.5 sm:gap-4 group/item">
+                  <CheckCircle2 className="w-4 h-4 sm:w-6 sm:h-6 text-[#1E5BD7] mt-0.5 flex-shrink-0 group-hover/item:scale-110 transition-transform" />
+                  <span className="text-xs sm:text-lg md:text-xl leading-relaxed">{t.hero.benefit2}</span>
                 </li>
-                <li className="flex items-start gap-3 sm:gap-4 group/item">
-                  <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-[#1E5BD7] mt-0.5 flex-shrink-0 group-hover/item:scale-110 transition-transform" />
-                  <span className="text-sm sm:text-lg md:text-xl leading-relaxed">{t.hero.benefit3}</span>
+                <li className="flex items-start gap-2.5 sm:gap-4 group/item">
+                  <CheckCircle2 className="w-4 h-4 sm:w-6 sm:h-6 text-[#1E5BD7] mt-0.5 flex-shrink-0 group-hover/item:scale-110 transition-transform" />
+                  <span className="text-xs sm:text-lg md:text-xl leading-relaxed">{t.hero.benefit3}</span>
                 </li>
-                <li className="flex items-start gap-3 sm:gap-4 group/item">
-                  <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-[#1E5BD7] mt-0.5 flex-shrink-0 group-hover/item:scale-110 transition-transform" />
-                  <span className="text-sm sm:text-lg md:text-xl leading-relaxed">{t.hero.benefit4}</span>
+                <li className="flex items-start gap-2.5 sm:gap-4 group/item">
+                  <CheckCircle2 className="w-4 h-4 sm:w-6 sm:h-6 text-[#1E5BD7] mt-0.5 flex-shrink-0 group-hover/item:scale-110 transition-transform" />
+                  <span className="text-xs sm:text-lg md:text-xl leading-relaxed">{t.hero.benefit4}</span>
                 </li>
-                <li className="flex items-start gap-3 sm:gap-4 group/item">
-                  <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-[#1E5BD7] mt-0.5 flex-shrink-0 group-hover/item:scale-110 transition-transform" />
-                  <span className="text-sm sm:text-lg md:text-xl leading-relaxed">{t.hero.benefit5}</span>
+                <li className="flex items-start gap-2.5 sm:gap-4 group/item">
+                  <CheckCircle2 className="w-4 h-4 sm:w-6 sm:h-6 text-[#1E5BD7] mt-0.5 flex-shrink-0 group-hover/item:scale-110 transition-transform" />
+                  <span className="text-xs sm:text-lg md:text-xl leading-relaxed">{t.hero.benefit5}</span>
                 </li>
               </ul>
             </div>
@@ -81,13 +81,6 @@ function Hero() {
               <span className="relative z-10 group-hover:translate-x-2 transition-transform duration-300 text-xl sm:text-2xl">→</span>
             </a>
           </div>
-        </div>
-      </div>
-
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
-        <div className="w-6 h-10 border-2 border-white/60 rounded-full flex items-start justify-center p-2 backdrop-blur-sm bg-white/10">
-          <div className="w-1.5 h-3 bg-white/80 rounded-full animate-scroll"></div>
         </div>
       </div>
     </div>
