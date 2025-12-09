@@ -21,16 +21,16 @@ function Hero() {
       <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&w=1920')] bg-cover bg-center bg-no-repeat" />
 
       {/* Content */}
-      <div className="relative z-20 h-full flex items-center pt-16 sm:pt-0">
+      <div className="relative z-20 h-full flex items-center pt-16 sm:pt-20 md:pt-24 lg:pt-28">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl animate-fade-in-up">
             {/* Logo & Title */}
-            <div className="flex flex-row items-center gap-3 sm:gap-4 mb-5 sm:mb-6">
+            <div className="flex flex-row items-center gap-3 sm:gap-4 md:gap-5 mb-5 sm:mb-6 md:mb-8 relative z-10">
               <div className="relative flex-shrink-0">
-                <Car className="w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 text-white drop-shadow-lg animate-float" />
-                <div className="absolute inset-0 bg-white/20 blur-xl rounded-full"></div>
+                <Car className="w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 text-white drop-shadow-2xl animate-float" />
+                <div className="absolute inset-0 bg-white/30 blur-2xl rounded-full"></div>
               </div>
-              <h1 className="text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.1] tracking-tight break-words">
+              <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white leading-[1.1] tracking-tight drop-shadow-2xl">
                 {t.hero.title}
               </h1>
             </div>
@@ -58,6 +58,14 @@ function Hero() {
                 <li className="flex items-start gap-3 sm:gap-4 group/item">
                   <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-[#1E5BD7] mt-0.5 flex-shrink-0 group-hover/item:scale-110 transition-transform" />
                   <span className="text-sm sm:text-lg md:text-xl leading-relaxed">{t.hero.benefit3}</span>
+                </li>
+                <li className="flex items-start gap-3 sm:gap-4 group/item">
+                  <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-[#1E5BD7] mt-0.5 flex-shrink-0 group-hover/item:scale-110 transition-transform" />
+                  <span className="text-sm sm:text-lg md:text-xl leading-relaxed">{t.hero.benefit4}</span>
+                </li>
+                <li className="flex items-start gap-3 sm:gap-4 group/item">
+                  <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-[#1E5BD7] mt-0.5 flex-shrink-0 group-hover/item:scale-110 transition-transform" />
+                  <span className="text-sm sm:text-lg md:text-xl leading-relaxed">{t.hero.benefit5}</span>
                 </li>
               </ul>
             </div>

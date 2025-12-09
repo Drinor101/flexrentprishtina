@@ -1,11 +1,21 @@
 import { MapPin, Clock, Phone, Mail } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
+import flexRentImage from '../assets/flex-rent-image.jpg';
 
 function LocationSection() {
   const { t } = useLanguage();
 
   return (
-    <section className="py-24 sm:py-28 bg-gradient-to-b from-[#0A2A66] via-[#12408C] to-[#0A2A66] text-white">
+    <section className="relative py-24 sm:py-28 text-white overflow-hidden">
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
+        style={{ backgroundImage: `url(${flexRentImage})` }}
+      />
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0A2A66]/95 via-[#12408C]/90 to-[#0A2A66]/95 z-[1]" />
+      
+      <div className="relative z-10">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 scroll-reveal">
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6 tracking-tight">
@@ -98,6 +108,7 @@ function LocationSection() {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </section>
   );

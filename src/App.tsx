@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
 import { LanguageProvider } from './i18n/LanguageContext';
 import Hero from './components/Hero';
+import AboutSection from './components/AboutSection';
 import CarShowcase from './components/CarShowcase';
-import ContactForm from './components/ContactForm';
 import LocationSection from './components/LocationSection';
+import TeamSection from './components/TeamSection';
+import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
 
 function App() {
@@ -84,8 +86,10 @@ function App() {
     <LanguageProvider>
       <div className="min-h-screen bg-white">
         <Hero />
+        <AboutSection />
         <CarShowcase />
         <LocationSection />
+        <TeamSection />
         <ContactForm />
         <Footer />
       </div>

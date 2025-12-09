@@ -8,6 +8,8 @@ export interface Translations {
     benefit1: string;
     benefit2: string;
     benefit3: string;
+    benefit4: string;
+    benefit5: string;
     contactBtn: string;
   };
   cars: {
@@ -18,12 +20,12 @@ export interface Translations {
     suvFilter: string;
     luxuryFilter: string;
     electricFilter: string;
-    premiumService: string;
-    premiumServiceDesc: string;
-    businessReady: string;
-    businessReadyDesc: string;
-    quickBooking: string;
-    quickBookingDesc: string;
+    vipAirportDelivery: string;
+    vipAirportDeliveryDesc: string;
+    fullTank: string;
+    fullTankDesc: string;
+    paymentOnSite: string;
+    paymentOnSiteDesc: string;
     bookBtn: string;
     photos: string;
     passenger: string;
@@ -41,6 +43,16 @@ export interface Translations {
     mondayFriday: string;
     saturday: string;
     sunday: string;
+  };
+  team: {
+    title: string;
+    subtitle: string;
+  };
+  about: {
+    title: string;
+    subtitle: string;
+    description1: string;
+    description2: string;
   };
   contact: {
     title: string;
@@ -76,10 +88,12 @@ export const translations: Record<Language, Translations> = {
     hero: {
       title: 'Flex Rent Prishtina',
       subtitle: 'Elevate your travel experience with our meticulously maintained premium fleet. Where luxury meets reliability, your journey begins.',
-      whyChooseUs: 'Why Choose Us?',
-      benefit1: 'Impeccably maintained premium vehicles with the latest safety features',
-      benefit2: 'Flexible rental terms with transparent, competitive pricing tailored to your needs',
-      benefit3: 'Round-the-clock customer support and comprehensive roadside assistance',
+      whyChooseUs: 'Why Choose Flex Rent Prishtina?',
+      benefit1: 'Airport pickup service - We deliver and pick up your vehicle directly at Prishtina International Airport.',
+      benefit2: 'Simple and fast booking - One message is enough — we confirm your reservation immediately.',
+      benefit3: 'Transparent pricing - No hidden fees. You pay exactly what is advertised.',
+      benefit4: 'Professional customer service - Personalized support and 7/7 availability.',
+      benefit5: 'Wide choice of vehicles - From economical city cars to premium SUVs.',
       contactBtn: 'Reserve Your Vehicle',
     },
     cars: {
@@ -90,12 +104,12 @@ export const translations: Record<Language, Translations> = {
       suvFilter: 'SUV',
       luxuryFilter: 'Luxury',
       electricFilter: 'Electric',
-      premiumService: 'Premium Service',
-      premiumServiceDesc: 'Dedicated concierge support ensuring a seamless, personalized experience from booking to return',
-      businessReady: 'Business Ready',
-      businessReadyDesc: 'Professional fleet solutions designed for corporate travel, events, and executive transportation needs',
-      quickBooking: 'Instant Booking',
-      quickBookingDesc: 'Streamlined reservation process with instant confirmation and flexible payment options',
+      vipAirportDelivery: 'VIP Airport Delivery',
+      vipAirportDeliveryDesc: 'Get your car directly at the exit of Prishtina airport. Fast, comfortable service without waiting.',
+      fullTank: 'Full Tank',
+      fullTankDesc: 'You get the car with a full tank. You return it with a full tank.',
+      paymentOnSite: 'Payment on Site',
+      paymentOnSiteDesc: 'Simple, fast and secure payment during car delivery.',
       bookBtn: 'Book Now',
       photos: 'Photos',
       passenger: 'Passenger',
@@ -113,6 +127,16 @@ export const translations: Record<Language, Translations> = {
       mondayFriday: 'Monday - Friday: 8:00 AM - 8:00 PM',
       saturday: 'Saturday: 9:00 AM - 6:00 PM',
       sunday: 'Sunday: 10:00 AM - 4:00 PM',
+    },
+    team: {
+      title: 'Our Team',
+      subtitle: 'Meet our dedicated managers who are here to ensure your rental experience is exceptional',
+    },
+    about: {
+      title: 'Flex Rent Prishtina',
+      subtitle: 'Car Rental – Premium Service at Prishtina Airport',
+      description1: 'At Flex Rent Prishtina, we provide you with recent, reliable, and carefully maintained vehicles to guarantee an exceptional driving experience.',
+      description2: 'Whether you are on a business trip, vacation, or professional travel, we have the ideal car for you.',
     },
     contact: {
       title: 'Get in Touch',
@@ -146,10 +170,12 @@ export const translations: Record<Language, Translations> = {
     hero: {
       title: 'Flex Rent Prishtina',
       subtitle: 'Ngritni përvojën tuaj të udhëtimit me flotën tonë premium të mirëmbajtur me kujdes. Ku luksi takohet me besueshmërinë, udhëtimi juaj fillon.',
-      whyChooseUs: 'Pse Të Zgjedhni Ne?',
-      benefit1: 'Automjete premium të mirëmbajtura në përfeksion me karakteristika të fundit të sigurisë',
-      benefit2: 'Kushte fleksibël qiraje me çmime transparente dhe konkurruese të përshtatura me nevojat tuaja',
-      benefit3: 'Mbështetje klienti 24/7 dhe asistencë gjithëpërfshirëse në rrugë',
+      whyChooseUs: 'Pse Të Zgjedhni Flex Rent Prishtina?',
+      benefit1: 'Shërbim marrjeje në aeroport - Ne dorëzojmë dhe marrim automjetin tuaj direkt në Aeroportin Ndërkombëtar të Prishtinës.',
+      benefit2: 'Rezervim i thjeshtë dhe i shpejtë - Një mesazh mjafton — ne konfirmojmë rezervimin tuaj menjëherë.',
+      benefit3: 'Çmime transparente - Asnjë tarifë e fshehur. Ju paguani saktësisht atë që është shpallur.',
+      benefit4: 'Shërbim klienti profesional - Mbështetje e personalizuar dhe disponueshmëri 7/7.',
+      benefit5: 'Zgjedhje e gjerë automjetesh - Nga makinat ekonomike urbane deri te SUV-et premium.',
       contactBtn: 'Rezervoni Automjetin Tuaj',
     },
     cars: {
@@ -160,12 +186,12 @@ export const translations: Record<Language, Translations> = {
       suvFilter: 'SUV',
       luxuryFilter: 'Luksi',
       electricFilter: 'Elektrik',
-      premiumService: 'Shërbim Premium',
-      premiumServiceDesc: 'Mbështetje portieri e dedikuar që siguron një përvojë të qetë dhe personalizuar nga rezervimi deri në kthim',
-      businessReady: 'Gati për Biznes',
-      businessReadyDesc: 'Zgjidhje profesionale flote të dizajnuara për udhëtime korporative, ngjarje dhe nevojat e transportit ekzekutiv',
-      quickBooking: 'Rezervim i Menjëhershëm',
-      quickBookingDesc: 'Proces i thjeshtuar rezervimi me konfirmim të menjëhershëm dhe opsione pagese fleksibël',
+      vipAirportDelivery: 'Dorëzim VIP në aeroport',
+      vipAirportDeliveryDesc: 'Merrni veturën tuaj direkt në dalje të aeroportit te Prishtinës. Shërbim i shpejtë, i rehatshëm dhe pa pritje.',
+      fullTank: 'Rezervuar i mbushur',
+      fullTankDesc: 'E merrni veturën me rezervuar të mbushur. E ktheni me rezervuar të mbushur.',
+      paymentOnSite: 'Pagesa në vend',
+      paymentOnSiteDesc: 'Pagesë e thjeshtë, e shpejtë dhe e sigurt gjatë dorëzimit të veturës.',
       bookBtn: 'Rezervo Tani',
       photos: 'Foto',
       passenger: 'Pasagjer',
@@ -183,6 +209,16 @@ export const translations: Record<Language, Translations> = {
       mondayFriday: 'E hënë - E premte: 08:00 - 20:00',
       saturday: 'E shtunë: 09:00 - 18:00',
       sunday: 'E diel: 10:00 - 16:00',
+    },
+    team: {
+      title: 'Ekipi Ynë',
+      subtitle: 'Takohuni me menaxherët tanë të dedikuar që janë këtu për të siguruar që përvoja juaj e qirasë të jetë e jashtëzakonshme',
+    },
+    about: {
+      title: 'Flex Rent Prishtina',
+      subtitle: 'Qira Automjetesh – Shërbim Premium në Aeroportin e Prishtinës',
+      description1: 'Tek Flex Rent Prishtina, ne ju ofrojmë automjete të reja, të besueshme dhe të mirëmbajtura me kujdes për të garantuar një përvojë drejtimi të jashtëzakonshme.',
+      description2: 'Qoftë në një udhëtim biznesi, pushime ose udhëtim profesional, ne kemi makinën ideale për ju.',
     },
     contact: {
       title: 'Lidhuni me Ne',
@@ -216,10 +252,12 @@ export const translations: Record<Language, Translations> = {
     hero: {
       title: 'Flex Rent Prishtina',
       subtitle: 'Erhöhen Sie Ihr Reiseerlebnis mit unserer sorgfältig gewarteten Premium-Flotte. Wo Luxus auf Zuverlässigkeit trifft, beginnt Ihre Reise.',
-      whyChooseUs: 'Warum Uns Wählen?',
-      benefit1: 'Makellos gewartete Premium-Fahrzeuge mit neuesten Sicherheitsfeatures',
-      benefit2: 'Flexible Mietbedingungen mit transparenten, wettbewerbsfähigen Preisen, die auf Ihre Bedürfnisse zugeschnitten sind',
-      benefit3: 'Rund-um-die-Uhr-Kundenunterstützung und umfassende Pannenhilfe',
+      whyChooseUs: 'Warum Flex Rent Prishtina Wählen?',
+      benefit1: 'Flughafen-Abholservice - Wir liefern und holen Ihr Fahrzeug direkt am Flughafen Prishtina ab.',
+      benefit2: 'Einfache und schnelle Buchung - Eine Nachricht genügt — wir bestätigen Ihre Reservierung sofort.',
+      benefit3: 'Transparente Preise - Keine versteckten Gebühren. Sie zahlen genau das, was angekündigt ist.',
+      benefit4: 'Professioneller Kundenservice - Personalisierte Betreuung und 7/7 Verfügbarkeit.',
+      benefit5: 'Große Auswahl an Fahrzeugen - Von wirtschaftlichen Stadtautos bis zu Premium-SUVs.',
       contactBtn: 'Fahrzeug Reservieren',
     },
     cars: {
@@ -230,12 +268,12 @@ export const translations: Record<Language, Translations> = {
       suvFilter: 'SUV',
       luxuryFilter: 'Luxus',
       electricFilter: 'Elektrisch',
-      premiumService: 'Premium-Service',
-      premiumServiceDesc: 'Dedizierte Concierge-Unterstützung für ein nahtloses, personalisiertes Erlebnis von der Buchung bis zur Rückgabe',
-      businessReady: 'Geschäftsbereit',
-      businessReadyDesc: 'Professionelle Flottenlösungen für Geschäftsreisen, Veranstaltungen und Executive-Transportbedürfnisse',
-      quickBooking: 'Sofortige Buchung',
-      quickBookingDesc: 'Optimierter Buchungsprozess mit sofortiger Bestätigung und flexiblen Zahlungsoptionen',
+      vipAirportDelivery: 'VIP Flughafenlieferung',
+      vipAirportDeliveryDesc: 'Erhalten Sie Ihr Auto direkt am Ausgang des Flughafens Prishtina. Schneller, komfortabler Service ohne Wartezeit.',
+      fullTank: 'Voller Tank',
+      fullTankDesc: 'Sie erhalten das Auto mit vollem Tank. Sie geben es mit vollem Tank zurück.',
+      paymentOnSite: 'Zahlung vor Ort',
+      paymentOnSiteDesc: 'Einfache, schnelle und sichere Zahlung bei der Autolieferung.',
       bookBtn: 'Jetzt Buchen',
       photos: 'Fotos',
       passenger: 'Passagier',
@@ -253,6 +291,16 @@ export const translations: Record<Language, Translations> = {
       mondayFriday: 'Montag - Freitag: 8:00 - 20:00 Uhr',
       saturday: 'Samstag: 9:00 - 18:00 Uhr',
       sunday: 'Sonntag: 10:00 - 16:00 Uhr',
+    },
+    team: {
+      title: 'Unser Team',
+      subtitle: 'Lernen Sie unsere engagierten Manager kennen, die hier sind, um sicherzustellen, dass Ihr Miet-Erlebnis außergewöhnlich ist',
+    },
+    about: {
+      title: 'Flex Rent Prishtina',
+      subtitle: 'Autovermietung – Premium-Service am Flughafen Prishtina',
+      description1: 'Bei Flex Rent Prishtina stellen wir Ihnen aktuelle, zuverlässige und sorgfältig gewartete Fahrzeuge zur Verfügung, um ein außergewöhnliches Fahrerlebnis zu gewährleisten.',
+      description2: 'Ob Sie auf Geschäftsreise, im Urlaub oder auf Dienstreise sind, wir haben das ideale Auto für Sie.',
     },
     contact: {
       title: 'Kontaktieren Sie Uns',
@@ -286,10 +334,12 @@ export const translations: Record<Language, Translations> = {
       hero: {
         title: 'Flex Rent Prishtina',
       subtitle: 'Élevez votre expérience de voyage avec notre flotte premium méticuleusement entretenue. Où le luxe rencontre la fiabilité, votre voyage commence.',
-      whyChooseUs: 'Pourquoi Nous Choisir?',
-      benefit1: 'Véhicules premium entretenus à la perfection avec les dernières fonctionnalités de sécurité',
-      benefit2: 'Conditions de location flexibles avec tarification transparente et compétitive adaptée à vos besoins',
-      benefit3: 'Support client 24/7 et assistance routière complète',
+      whyChooseUs: 'Pourquoi choisir Flex Rent Prishtina ?',
+      benefit1: 'Service de prise en charge à l\'aéroport - Nous livrons et récupérons votre véhicule directement à l\'Aéroport International de Prishtina.',
+      benefit2: 'Réservation simple et rapide - Un message suffit — nous confirmons votre réservation immédiatement.',
+      benefit3: 'Prix transparents - Aucun frais caché. Vous payez exactement ce qui est annoncé.',
+      benefit4: 'Service client professionnel - Accompagnement personnalisé et disponibilité 7j/7.',
+      benefit5: 'Large choix de véhicules - Des citadines économiques aux SUV premium.',
       contactBtn: 'Réserver Votre Véhicule',
     },
     cars: {
@@ -300,12 +350,12 @@ export const translations: Record<Language, Translations> = {
       suvFilter: 'SUV',
       luxuryFilter: 'Luxe',
       electricFilter: 'Électrique',
-      premiumService: 'Service Premium',
-      premiumServiceDesc: 'Support conciergerie dédié garantissant une expérience fluide et personnalisée de la réservation au retour',
-      businessReady: 'Prêt pour les Affaires',
-      businessReadyDesc: 'Solutions de flotte professionnelles conçues pour les voyages d\'affaires, événements et besoins de transport exécutif',
-      quickBooking: 'Réservation Instantanée',
-      quickBookingDesc: 'Processus de réservation rationalisé avec confirmation instantanée et options de paiement flexibles',
+      vipAirportDelivery: 'Livraison VIP à l\'aéroport',
+      vipAirportDeliveryDesc: 'Récupérez votre véhicule directement à la sortie de l\'aéroport de Prishtina. Un service rapide, confortable et sans attente.',
+      fullTank: 'Plein de carburant inclus',
+      fullTankDesc: 'Vous prenez le véhicule avec le plein, vous le rendez avec le plein.',
+      paymentOnSite: 'Paiement sur place',
+      paymentOnSiteDesc: 'Un règlement simple, rapide et sécurisé effectué lors de la remise du véhicule.',
       bookBtn: 'Réserver Maintenant',
       photos: 'Photos',
       passenger: 'Passager',
@@ -323,6 +373,16 @@ export const translations: Record<Language, Translations> = {
       mondayFriday: 'Lundi - Vendredi: 8:00 - 20:00',
       saturday: 'Samedi: 9:00 - 18:00',
       sunday: 'Dimanche: 10:00 - 16:00',
+    },
+    team: {
+      title: 'Notre Équipe',
+      subtitle: 'Rencontrez nos gestionnaires dévoués qui sont là pour garantir que votre expérience de location soit exceptionnelle',
+    },
+    about: {
+      title: 'Flex Rent Prishtina',
+      subtitle: 'Location de voitures – Service premium à l\'aéroport de Prishtina',
+      description1: 'Chez Flex Rent Prishtina, nous mettons à votre disposition des véhicules récents, fiables et soigneusement entretenus pour garantir une expérience de conduite exceptionnelle.',
+      description2: 'Que vous soyez en voyage d\'affaires, en vacances ou en déplacement professionnel, nous avons la voiture idéale pour vous.',
     },
     contact: {
       title: 'Nous Contacter',
@@ -356,10 +416,12 @@ export const translations: Record<Language, Translations> = {
     hero: {
       title: 'Flex Rent Prishtina',
       subtitle: 'Eleva la tua esperienza di viaggio con la nostra flotta premium meticolosamente mantenuta. Dove il lusso incontra l\'affidabilità, inizia il tuo viaggio.',
-      whyChooseUs: 'Perché Sceglierci?',
-      benefit1: 'Veicoli premium mantenuti in modo impeccabile con le ultime caratteristiche di sicurezza',
-      benefit2: 'Termini di noleggio flessibili con prezzi trasparenti e competitivi su misura per le tue esigenze',
-      benefit3: 'Supporto clienti 24/7 e assistenza stradale completa',
+      whyChooseUs: 'Perché Scegliere Flex Rent Prishtina?',
+      benefit1: 'Servizio di ritiro in aeroporto - Consegniamo e ritiriamo il tuo veicolo direttamente all\'Aeroporto Internazionale di Prishtina.',
+      benefit2: 'Prenotazione semplice e veloce - Un messaggio è sufficiente — confermiamo la tua prenotazione immediatamente.',
+      benefit3: 'Prezzi trasparenti - Nessun costo nascosto. Paghi esattamente ciò che è pubblicizzato.',
+      benefit4: 'Servizio clienti professionale - Supporto personalizzato e disponibilità 7/7.',
+      benefit5: 'Ampia scelta di veicoli - Dalle auto cittadine economiche ai SUV premium.',
       contactBtn: 'Prenota il Tuo Veicolo',
     },
     cars: {
@@ -370,12 +432,12 @@ export const translations: Record<Language, Translations> = {
       suvFilter: 'SUV',
       luxuryFilter: 'Lusso',
       electricFilter: 'Elettrico',
-      premiumService: 'Servizio Premium',
-      premiumServiceDesc: 'Supporto concierge dedicato che garantisce un\'esperienza fluida e personalizzata dalla prenotazione al ritorno',
-      businessReady: 'Pronto per il Business',
-      businessReadyDesc: 'Soluzioni flotta professionali progettate per viaggi aziendali, eventi e esigenze di trasporto esecutivo',
-      quickBooking: 'Prenotazione Istantanea',
-      quickBookingDesc: 'Processo di prenotazione semplificato con conferma immediata e opzioni di pagamento flessibili',
+      vipAirportDelivery: 'Consegna VIP in aeroporto',
+      vipAirportDeliveryDesc: 'Ritira la tua auto direttamente all\'uscita dell\'aeroporto di Prishtina. Servizio veloce, comodo e senza attese.',
+      fullTank: 'Serbatoio pieno',
+      fullTankDesc: 'Ricevi l\'auto con il serbatoio pieno. La restituisci con il serbatoio pieno.',
+      paymentOnSite: 'Pagamento sul posto',
+      paymentOnSiteDesc: 'Pagamento semplice, veloce e sicuro durante la consegna dell\'auto.',
       bookBtn: 'Prenota Ora',
       photos: 'Foto',
       passenger: 'Passeggero',
@@ -393,6 +455,16 @@ export const translations: Record<Language, Translations> = {
       mondayFriday: 'Lunedì - Venerdì: 8:00 - 20:00',
       saturday: 'Sabato: 9:00 - 18:00',
       sunday: 'Domenica: 10:00 - 16:00',
+    },
+    team: {
+      title: 'Il Nostro Team',
+      subtitle: 'Incontra i nostri manager dedicati che sono qui per garantire che la tua esperienza di noleggio sia eccezionale',
+    },
+    about: {
+      title: 'Flex Rent Prishtina',
+      subtitle: 'Noleggio auto – Servizio premium all\'aeroporto di Prishtina',
+      description1: 'Presso Flex Rent Prishtina, mettiamo a tua disposizione veicoli recenti, affidabili e accuratamente mantenuti per garantire un\'esperienza di guida eccezionale.',
+      description2: 'Che tu sia in viaggio d\'affari, in vacanza o in trasferta professionale, abbiamo l\'auto ideale per te.',
     },
     contact: {
       title: 'Contattaci',
