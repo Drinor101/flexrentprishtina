@@ -93,7 +93,9 @@ function Footer() {
                 <Facebook className="w-6 h-6 text-white group-hover:text-white transition-colors" />
               </a>
               <a 
-                href="#" 
+                href="https://www.instagram.com/flexrentprishtina/" 
+                target="_blank" 
+                rel="noopener noreferrer"
                 className="w-12 h-12 bg-white/10 hover:bg-[#1E5BD7] rounded-xl flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:rotate-3 hover:shadow-lg hover:shadow-[#1E5BD7]/50 group"
                 aria-label="Instagram"
               >
