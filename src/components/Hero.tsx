@@ -6,7 +6,7 @@ function Hero() {
   const { t } = useLanguage();
 
   return (
-    <div className="relative h-screen overflow-y-auto overflow-x-hidden">
+    <div className="relative min-h-screen overflow-x-hidden">
       {/* Navigation Bar */}
       <div className="absolute top-0 left-0 right-0 z-30 bg-gradient-to-b from-[#0A2A66]/90 to-transparent backdrop-blur-md p-4 sm:p-6 min-h-[72px] flex items-center">
         <div className="container mx-auto flex justify-end w-full">
@@ -21,7 +21,7 @@ function Hero() {
       <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&w=1920')] bg-cover bg-center bg-no-repeat" />
 
       {/* Content */}
-      <div className="relative z-20 min-h-full flex items-start sm:items-center pt-28 pb-12 sm:pt-20 md:pt-24 lg:pt-28 sm:pb-8">
+      <div className="relative z-20 flex items-start sm:items-center pt-28 pb-12 sm:pt-20 md:pt-24 lg:pt-28 sm:pb-8 min-h-screen">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="max-w-4xl animate-fade-in-up">
             {/* Logo & Title */}
