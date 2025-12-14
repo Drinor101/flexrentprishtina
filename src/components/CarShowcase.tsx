@@ -2,66 +2,7 @@ import { useState } from 'react';
 import { Plane, Fuel, CreditCard } from 'lucide-react';
 import CarCard from './CarCard';
 import { useLanguage } from '../i18n/LanguageContext';
-
-// Import car images from assets
-import audiQ3Img from '../assets/audi-q3.jpg';
-import bmwX5Img from '../assets/bmw-x5.jpg';
-import vwPoloImg from '../assets/vw-polo.jpg';
-import vwTiguanImg from '../assets/vw-tiguan.jpg';
-import vwTrocImg from '../assets/vw-troc.jpg';
-
-const cars = [
-  {
-    id: 1,
-    name: 'Audi Q3',
-    category: 'Audi',
-    image: audiQ3Img,
-    price: 69,
-    passengers: 5,
-    year: 2024,
-    transmission: 'Automatic',
-  },
-  {
-    id: 2,
-    name: 'BMW X5',
-    category: 'BMW',
-    image: bmwX5Img,
-    price: 99,
-    passengers: 5,
-    year: 2024,
-    transmission: 'Automatic',
-  },
-  {
-    id: 3,
-    name: 'Volkswagen Polo',
-    category: 'Volkswagen',
-    image: vwPoloImg,
-    price: 39,
-    passengers: 5,
-    year: 2024,
-    transmission: 'Automatic',
-  },
-  {
-    id: 4,
-    name: 'Volkswagen Tiguan',
-    category: 'Volkswagen',
-    image: vwTiguanImg,
-    price: 59,
-    passengers: 5,
-    year: 2024,
-    transmission: 'Automatic',
-  },
-  {
-    id: 5,
-    name: 'Volkswagen T-Roc',
-    category: 'Volkswagen',
-    image: vwTrocImg,
-    price: 49,
-    passengers: 5,
-    year: 2024,
-    transmission: 'Automatic',
-  },
-];
+import { cars } from '../data/cars';
 
 function CarShowcase() {
   const { t } = useLanguage();
@@ -70,9 +11,14 @@ function CarShowcase() {
   // Get unique brand categories from actual cars
   const availableCategories = Array.from(new Set(cars.map(car => car.category)));
   
-  const filteredCars = filter === 'all'
+  let filteredCars = filter === 'all'
     ? cars
     : cars.filter(car => car.category === filter);
+
+  // Automatically sort by price (low to high) when "all" filter is selected
+  if (filter === 'all') {
+    filteredCars = [...filteredCars].sort((a, b) => a.price - b.price);
+  }
 
   // Build filter options: 'all' + available brand categories
   const filterOptions = ['all', ...availableCategories.sort()];

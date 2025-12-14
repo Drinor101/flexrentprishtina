@@ -64,7 +64,7 @@ function CarCard({ car, index }: CarCardProps) {
 
         <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between mt-auto gap-4">
           <div>
-            <span className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0A0A0A]">${car.price}</span>
+            <span className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0A0A0A]">€{car.price}</span>
             <span className="text-[#0A0A0A]/70 ml-2 text-base sm:text-lg">/day</span>
           </div>
           <a

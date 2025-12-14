@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Mail, Phone, User, Calendar, MessageSquare, CheckCircle2, XCircle, Loader2 } from 'lucide-react';
+import { Mail, Phone, User, Calendar, MessageSquare, CheckCircle2, XCircle, Loader2, Car } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
+import { cars } from '../data/cars';
 
 function ContactForm() {
   const { t } = useLanguage();
@@ -8,6 +9,7 @@ function ContactForm() {
     name: '',
     email: '',
     phone: '',
+    car: '',
     dateFrom: '',
     dateTo: '',
     message: '',
@@ -35,6 +37,7 @@ function ContactForm() {
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
+          car: formData.car,
           dateFrom: formData.dateFrom,
           dateTo: formData.dateTo,
           message: formData.message,
@@ -44,7 +47,7 @@ function ContactForm() {
 
       if (response.ok) {
         setStatus('success');
-        setFormData({ name: '', email: '', phone: '', dateFrom: '', dateTo: '', message: '' });
+        setFormData({ name: '', email: '', phone: '', car: '', dateFrom: '', dateTo: '', message: '' });
         // Reset success message after 5 seconds
         setTimeout(() => {
           setStatus('idle');
@@ -134,6 +137,27 @@ function ContactForm() {
                 disabled={status === 'loading'}
                 className="w-full pl-12 sm:pl-14 pr-4 sm:pr-5 py-3.5 sm:py-4 md:py-5 border-2 border-gray-200/80 rounded-xl sm:rounded-2xl focus:ring-2 focus:ring-[#1E5BD7]/20 focus:border-[#1E5BD7] outline-none transition-all duration-300 text-[#0A0A0A] text-sm sm:text-base placeholder-[#0A0A0A]/40 font-light hover:border-[#0A2A66]/30 disabled:opacity-50 disabled:cursor-not-allowed bg-gray-50/50"
               />
+            </div>
+
+            <div className="relative">
+              <Car className="absolute left-4 sm:left-5 top-1/2 transform -translate-y-1/2 w-5 h-5 sm:w-6 sm:h-6 text-[#0A0A0A]/40" />
+              <select
+                name="car"
+                required
+                value={formData.car}
+                onChange={(e) => setFormData({ ...formData, car: e.target.value })}
+                disabled={status === 'loading'}
+                className="w-full pl-12 sm:pl-14 pr-4 sm:pr-5 py-3.5 sm:py-4 md:py-5 border-2 border-gray-200/80 rounded-xl sm:rounded-2xl focus:ring-2 focus:ring-[#1E5BD7]/20 focus:border-[#1E5BD7] outline-none transition-all duration-300 text-[#0A0A0A] text-sm sm:text-base font-light hover:border-[#0A2A66]/30 disabled:opacity-50 disabled:cursor-not-allowed bg-gray-50/50 appearance-none cursor-pointer"
+              >
+                <option value="" disabled className="text-[#0A0A0A]/40">
+                  {t.contact.carLabel}
+                </option>
+                {cars.map((car) => (
+                  <option key={car.id} value={car.name} className="text-[#0A0A0A]">
+                    {car.name} - €{car.price}/day
+                  </option>
+                ))}
+              </select>
             </div>
 
             {/* Date From */}

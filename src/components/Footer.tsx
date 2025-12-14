@@ -58,9 +58,9 @@ function Footer() {
             <h4 className="text-xl font-bold mb-6 text-white">{t.location.phone}</h4>
             <ul className="space-y-4">
               <li>
-                <a href="tel:+37745707005" className="text-white/80 hover:text-[#1E5BD7] transition-colors duration-300 text-lg flex items-start gap-3 group">
+                <a href="tel:+38345343430" className="text-white/80 hover:text-[#1E5BD7] transition-colors duration-300 text-lg flex items-start gap-3 group">
                   <Phone className="w-5 h-5 mt-1 flex-shrink-0 text-[#1E5BD7]" />
-                  <span>+377 45 70 70 05</span>
+                  <span>+383 45 343 430</span>
                 </a>
               </li>
               <li>

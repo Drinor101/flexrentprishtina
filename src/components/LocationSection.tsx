@@ -82,8 +82,8 @@ function LocationSection() {
                 <div className="flex-1">
                   <h3 className="text-xl lg:text-2xl font-bold mb-3 text-white">{t.location.phone}</h3>
                   <div className="space-y-2">
-                    <a href="tel:+37745707005" className="block text-white/90 hover:text-[#1E5BD7] transition-colors text-lg">
-                      +377 45 70 70 05
+                    <a href="tel:+38345343430" className="block text-white/90 hover:text-[#1E5BD7] transition-colors text-lg">
+                      +383 45 343 430
                     </a>
                     <a href="tel:+41799329445" className="block text-white/90 hover:text-[#1E5BD7] transition-colors text-lg">
                       +41 79 932 94 45

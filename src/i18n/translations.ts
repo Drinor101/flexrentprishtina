@@ -60,6 +60,7 @@ export interface Translations {
     name: string;
     emailLabel: string;
     phoneLabel: string;
+    carLabel: string;
     dateFrom: string;
     dateTo: string;
     message: string;
@@ -144,6 +145,7 @@ export const translations: Record<Language, Translations> = {
       name: 'Full Name',
       emailLabel: 'Email Address',
       phoneLabel: 'Phone Number',
+      carLabel: 'Select Car',
       dateFrom: 'Rental Start Date',
       dateTo: 'Rental End Date',
       message: 'Additional Details or Special Requests',
@@ -226,6 +228,7 @@ export const translations: Record<Language, Translations> = {
       name: 'Emri i Plotë',
       emailLabel: 'Adresa Email',
       phoneLabel: 'Numri i Telefonit',
+      carLabel: 'Zgjidhni Makinën',
       dateFrom: 'Data e Fillimit të Qirasë',
       dateTo: 'Data e Mbarimit të Qirasë',
       message: 'Detaje Shtesë ose Kërkesa Speciale',
@@ -308,6 +311,7 @@ export const translations: Record<Language, Translations> = {
       name: 'Vollständiger Name',
       emailLabel: 'Email-Adresse',
       phoneLabel: 'Telefonnummer',
+      carLabel: 'Auto Auswählen',
       dateFrom: 'Mietbeginn',
       dateTo: 'Mietende',
       message: 'Zusätzliche Details oder Sonderwünsche',
@@ -390,6 +394,7 @@ export const translations: Record<Language, Translations> = {
       name: 'Nom Complet',
       emailLabel: 'Adresse Email',
       phoneLabel: 'Numéro de Téléphone',
+      carLabel: 'Sélectionner la Voiture',
       dateFrom: 'Date de Début de Location',
       dateTo: 'Date de Fin de Location',
       message: 'Détails Supplémentaires ou Demandes Spéciales',
@@ -472,6 +477,7 @@ export const translations: Record<Language, Translations> = {
       name: 'Nome Completo',
       emailLabel: 'Indirizzo Email',
       phoneLabel: 'Numero di Telefono',
+      carLabel: 'Seleziona Auto',
       dateFrom: 'Data di Inizio Noleggio',
       dateTo: 'Data di Fine Noleggio',
       message: 'Dettagli Aggiuntivi o Richieste Speciali',
