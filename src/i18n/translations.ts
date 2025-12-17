@@ -62,7 +62,11 @@ export interface Translations {
     phoneLabel: string;
     carLabel: string;
     dateFrom: string;
+    timeFrom: string;
     dateTo: string;
+    timeTo: string;
+    pickupLocation: string;
+    pickupLocationAirport: string;
     message: string;
     submit: string;
     success: string;
@@ -147,7 +151,11 @@ export const translations: Record<Language, Translations> = {
       phoneLabel: 'Phone Number',
       carLabel: 'Select Car',
       dateFrom: 'Rental Start Date',
+      timeFrom: 'Pickup Time',
       dateTo: 'Rental End Date',
+      timeTo: 'Return Time',
+      pickupLocation: 'Pickup Location',
+      pickupLocationAirport: 'Pristina Adem Jashari International Airport',
       message: 'Additional Details or Special Requests',
       submit: 'Submit Inquiry',
       success: 'Thank you for your inquiry! Our team will contact you within 24 hours to confirm your reservation.',
@@ -230,7 +238,11 @@ export const translations: Record<Language, Translations> = {
       phoneLabel: 'Numri i Telefonit',
       carLabel: 'Zgjidhni Makinën',
       dateFrom: 'Data e Fillimit të Qirasë',
+      timeFrom: 'Ora e Marrjes',
       dateTo: 'Data e Mbarimit të Qirasë',
+      timeTo: 'Ora e Kthimit',
+      pickupLocation: 'Vendndodhja e Marrjes',
+      pickupLocationAirport: 'Aeroporti Ndërkombëtar i Prishtinës Adem Jashari',
       message: 'Detaje Shtesë ose Kërkesa Speciale',
       submit: 'Dërgoni Kërkesën',
       success: 'Faleminderit për kërkesën tuaj! Ekipi ynë do t\'ju kontaktojë brenda 24 orëve për të konfirmuar rezervimin tuaj.',
@@ -313,7 +325,11 @@ export const translations: Record<Language, Translations> = {
       phoneLabel: 'Telefonnummer',
       carLabel: 'Auto Auswählen',
       dateFrom: 'Mietbeginn',
+      timeFrom: 'Abholzeit',
       dateTo: 'Mietende',
+      timeTo: 'Rückgabezeit',
+      pickupLocation: 'Abholort',
+      pickupLocationAirport: 'Flughafen Pristina Adem Jashari International',
       message: 'Zusätzliche Details oder Sonderwünsche',
       submit: 'Anfrage Senden',
       success: 'Vielen Dank für Ihre Anfrage! Unser Team wird Sie innerhalb von 24 Stunden kontaktieren, um Ihre Reservierung zu bestätigen.',
@@ -396,7 +412,11 @@ export const translations: Record<Language, Translations> = {
       phoneLabel: 'Numéro de Téléphone',
       carLabel: 'Sélectionner la Voiture',
       dateFrom: 'Date de Début de Location',
+      timeFrom: 'Heure de Prise en Charge',
       dateTo: 'Date de Fin de Location',
+      timeTo: 'Heure de Retour',
+      pickupLocation: 'Lieu de Prise en Charge',
+      pickupLocationAirport: 'Aéroport International de Pristina Adem Jashari',
       message: 'Détails Supplémentaires ou Demandes Spéciales',
       submit: 'Envoyer la Demande',
       success: 'Merci pour votre demande! Notre équipe vous contactera dans les 24 heures pour confirmer votre réservation.',
@@ -479,7 +499,11 @@ export const translations: Record<Language, Translations> = {
       phoneLabel: 'Numero di Telefono',
       carLabel: 'Seleziona Auto',
       dateFrom: 'Data di Inizio Noleggio',
+      timeFrom: 'Ora di Ritiro',
       dateTo: 'Data di Fine Noleggio',
+      timeTo: 'Ora di Restituzione',
+      pickupLocation: 'Luogo di Ritiro',
+      pickupLocationAirport: 'Aeroporto Internazionale di Pristina Adem Jashari',
       message: 'Dettagli Aggiuntivi o Richieste Speciali',
       submit: 'Invia Richiesta',
       success: 'Grazie per la tua richiesta! Il nostro team ti contatterà entro 24 ore per confermare la tua prenotazione.',

@@ -18,7 +18,7 @@ function Hero() {
       <div className="absolute inset-0 bg-gradient-to-br from-[#0A2A66]/90 via-[#0A2A66]/70 to-[#12408C]/80 z-10" />
 
       {/* Background Image */}
-      <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&w=1920')] bg-cover bg-center bg-no-repeat" />
+      <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/116675/pexels-photo-116675.jpeg?auto=compress&cs=tinysrgb&w=1920')] bg-cover bg-center bg-no-repeat" />
 
       {/* Content */}
       <div className="relative z-20 flex items-start sm:items-center pt-28 pb-12 sm:pt-20 md:pt-24 lg:pt-28 sm:pb-8 min-h-screen">

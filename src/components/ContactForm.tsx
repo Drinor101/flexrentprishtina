@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Mail, Phone, User, Calendar, MessageSquare, CheckCircle2, XCircle, Loader2, Car } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Mail, Phone, User, Calendar, MessageSquare, CheckCircle2, XCircle, Loader2, Car, Clock, MapPin } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
 import { cars } from '../data/cars';
 
@@ -11,11 +11,19 @@ function ContactForm() {
     phone: '',
     car: '',
     dateFrom: '',
+    timeFrom: '',
     dateTo: '',
+    timeTo: '',
+    pickupLocation: '',
     message: '',
   });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+
+  // Set pickup location to airport on mount and when language changes
+  useEffect(() => {
+    setFormData(prev => ({ ...prev, pickupLocation: t.contact.pickupLocationAirport }));
+  }, [t.contact.pickupLocationAirport]);
 
   // Formspree Configuration
   // Formspree endpoint - form submissions will be sent to this URL
@@ -39,7 +47,10 @@ function ContactForm() {
           phone: formData.phone,
           car: formData.car,
           dateFrom: formData.dateFrom,
+          timeFrom: formData.timeFrom,
           dateTo: formData.dateTo,
+          timeTo: formData.timeTo,
+          pickupLocation: t.contact.pickupLocationAirport,
           message: formData.message,
           _subject: `New Rental Request from ${formData.name}`,
         }),
@@ -47,7 +58,7 @@ function ContactForm() {
 
       if (response.ok) {
         setStatus('success');
-        setFormData({ name: '', email: '', phone: '', car: '', dateFrom: '', dateTo: '', message: '' });
+        setFormData({ name: '', email: '', phone: '', car: '', dateFrom: '', timeFrom: '', dateTo: '', timeTo: '', pickupLocation: '', message: '' });
         // Reset success message after 5 seconds
         setTimeout(() => {
           setStatus('idle');
@@ -178,6 +189,23 @@ function ContactForm() {
               </label>
             </div>
 
+            {/* Time From */}
+            <div className="relative">
+              <Clock className="absolute left-4 sm:left-5 top-1/2 transform -translate-y-1/2 w-5 h-5 sm:w-6 sm:h-6 text-[#0A0A0A]/40" />
+              <input
+                type="time"
+                name="timeFrom"
+                required
+                value={formData.timeFrom}
+                onChange={(e) => setFormData({ ...formData, timeFrom: e.target.value })}
+                disabled={status === 'loading'}
+                className="w-full pl-12 sm:pl-14 pr-4 sm:pr-5 py-3.5 sm:py-4 md:py-5 border-2 border-gray-200/80 rounded-xl sm:rounded-2xl focus:ring-2 focus:ring-[#1E5BD7]/20 focus:border-[#1E5BD7] outline-none transition-all duration-300 text-[#0A0A0A] text-sm sm:text-base hover:border-[#0A2A66]/30 disabled:opacity-50 disabled:cursor-not-allowed bg-gray-50/50"
+              />
+              <label className="absolute -top-2.5 left-12 sm:left-14 bg-white px-2 text-xs sm:text-sm text-[#0A0A0A]/60 font-medium">
+                {t.contact.timeFrom}
+              </label>
+            </div>
+
             {/* Date To */}
             <div className="relative">
               <Calendar className="absolute left-4 sm:left-5 top-1/2 transform -translate-y-1/2 w-5 h-5 sm:w-6 sm:h-6 text-[#0A0A0A]/40" />
@@ -193,6 +221,39 @@ function ContactForm() {
               />
               <label className="absolute -top-2.5 left-12 sm:left-14 bg-white px-2 text-xs sm:text-sm text-[#0A0A0A]/60 font-medium">
                 {t.contact.dateTo}
+              </label>
+            </div>
+
+            {/* Time To */}
+            <div className="relative">
+              <Clock className="absolute left-4 sm:left-5 top-1/2 transform -translate-y-1/2 w-5 h-5 sm:w-6 sm:h-6 text-[#0A0A0A]/40" />
+              <input
+                type="time"
+                name="timeTo"
+                required
+                value={formData.timeTo}
+                onChange={(e) => setFormData({ ...formData, timeTo: e.target.value })}
+                disabled={status === 'loading'}
+                className="w-full pl-12 sm:pl-14 pr-4 sm:pr-5 py-3.5 sm:py-4 md:py-5 border-2 border-gray-200/80 rounded-xl sm:rounded-2xl focus:ring-2 focus:ring-[#1E5BD7]/20 focus:border-[#1E5BD7] outline-none transition-all duration-300 text-[#0A0A0A] text-sm sm:text-base hover:border-[#0A2A66]/30 disabled:opacity-50 disabled:cursor-not-allowed bg-gray-50/50"
+              />
+              <label className="absolute -top-2.5 left-12 sm:left-14 bg-white px-2 text-xs sm:text-sm text-[#0A0A0A]/60 font-medium">
+                {t.contact.timeTo}
+              </label>
+            </div>
+
+            {/* Pickup Location */}
+            <div className="relative">
+              <MapPin className="absolute left-4 sm:left-5 top-1/2 transform -translate-y-1/2 w-5 h-5 sm:w-6 sm:h-6 text-[#0A0A0A]/40" />
+              <input
+                type="text"
+                name="pickupLocation"
+                value={t.contact.pickupLocationAirport}
+                disabled
+                className="w-full pl-12 sm:pl-14 pr-4 sm:pr-5 py-3.5 sm:py-4 md:py-5 border-2 border-gray-200/80 rounded-xl sm:rounded-2xl text-[#0A0A0A] text-sm sm:text-base font-light bg-gray-50/50 opacity-70 cursor-not-allowed"
+                readOnly
+              />
+              <label className="absolute -top-2.5 left-12 sm:left-14 bg-white px-2 text-xs sm:text-sm text-[#0A0A0A]/60 font-medium">
+                {t.contact.pickupLocation}
               </label>
             </div>
 
