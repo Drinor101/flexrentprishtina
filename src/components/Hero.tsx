@@ -1,9 +1,80 @@
-import { Car, Phone, CheckCircle2 } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Car, Phone, CheckCircle2, Mail, User, Calendar, XCircle, Loader2 } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
 import LanguageSwitcher from './LanguageSwitcher';
+import { cars } from '../data/cars';
 
 function Hero() {
   const { t } = useLanguage();
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    car: '',
+    dateFrom: '',
+    timeFrom: '',
+    dateTo: '',
+    timeTo: '',
+    pickupLocation: '',
+    message: '',
+  });
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  // Set pickup location to airport on mount and when language changes
+  useEffect(() => {
+    setFormData(prev => ({ ...prev, pickupLocation: t.contact.pickupLocationAirport }));
+  }, [t.contact.pickupLocationAirport]);
+
+  // Formspree Configuration
+  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/myzqwqyq';
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('loading');
+    setErrorMessage('');
+
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          car: formData.car,
+          dateFrom: formData.dateFrom,
+          timeFrom: formData.timeFrom,
+          dateTo: formData.dateTo,
+          timeTo: formData.timeTo,
+          pickupLocation: t.contact.pickupLocationAirport,
+          message: formData.message,
+          _subject: `New Rental Request from ${formData.name}`,
+        }),
+      });
+
+      if (response.ok) {
+        setStatus('success');
+        setFormData({ name: '', email: '', phone: '', car: '', dateFrom: '', timeFrom: '', dateTo: '', timeTo: '', pickupLocation: '', message: '' });
+        setTimeout(() => {
+          setStatus('idle');
+        }, 5000);
+      } else {
+        const data = await response.json();
+        throw new Error(data.error || 'Something went wrong');
+      }
+    } catch (error) {
+      setStatus('error');
+      setErrorMessage(error instanceof Error ? error.message : 'Failed to send message. Please try again.');
+      setTimeout(() => {
+        setStatus('idle');
+        setErrorMessage('');
+      }, 5000);
+    }
+  };
 
   return (
     <div className="relative min-h-screen overflow-x-hidden">
@@ -70,16 +141,167 @@ function Hero() {
               </ul>
             </div>
 
-            {/* CTA Button */}
-            <a
-              href="#contact"
-              className="group relative bg-white hover:bg-[#1E5BD7] text-[#0A2A66] hover:text-white font-bold px-6 sm:px-10 py-4 sm:py-5 rounded-full inline-flex items-center justify-center gap-2 sm:gap-3 text-base sm:text-lg shadow-2xl hover:shadow-[#1E5BD7]/50 transform hover:scale-105 active:scale-100 transition-all duration-300 overflow-hidden w-full sm:w-auto"
-            >
-              <span className="absolute inset-0 bg-gradient-to-r from-[#1E5BD7] to-[#12408C] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-              <Phone className="w-5 h-5 sm:w-6 sm:h-6 relative z-10 group-hover:rotate-12 transition-transform" />
-              <span className="relative z-10">{t.hero.contactBtn}</span>
-              <span className="relative z-10 group-hover:translate-x-2 transition-transform duration-300 text-xl sm:text-2xl">→</span>
-            </a>
+            {/* Contact Form */}
+            <form onSubmit={handleSubmit} className="bg-white/10 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 border border-white/20 shadow-2xl space-y-3 sm:space-y-4 animate-fade-in-delay">
+              {/* Success Message */}
+              {status === 'success' && (
+                <div className="bg-green-500/90 backdrop-blur-sm border-2 border-green-300 rounded-xl p-3 sm:p-4 flex items-center gap-2 sm:gap-3">
+                  <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-white flex-shrink-0" />
+                  <p className="text-white font-medium text-xs sm:text-sm">{t.contact.success}</p>
+                </div>
+              )}
+
+              {/* Error Message */}
+              {status === 'error' && (
+                <div className="bg-red-500/90 backdrop-blur-sm border-2 border-red-300 rounded-xl p-3 sm:p-4 flex items-center gap-2 sm:gap-3">
+                  <XCircle className="w-4 h-4 sm:w-5 sm:h-5 text-white flex-shrink-0" />
+                  <p className="text-white font-medium text-xs sm:text-sm">{errorMessage || 'Failed to send message. Please try again.'}</p>
+                </div>
+              )}
+
+              <div className="space-y-3 sm:space-y-4">
+                {/* First Row */}
+                <div className="flex flex-wrap gap-2 sm:gap-3 items-end">
+                  <div className="relative flex-1 min-w-[120px]">
+                    <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white/60" />
+                    <input
+                      type="text"
+                      name="name"
+                      required
+                      placeholder={t.contact.name}
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      disabled={status === 'loading'}
+                      className="w-full pl-10 pr-3 py-2.5 sm:py-3 border-2 border-white/30 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-white outline-none transition-all text-white text-sm placeholder-white/60 bg-white/10 backdrop-blur-sm disabled:opacity-50"
+                    />
+                  </div>
+
+                  <div className="relative flex-1 min-w-[120px]">
+                    <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white/60" />
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      placeholder="Email"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      disabled={status === 'loading'}
+                      className="w-full pl-10 pr-3 py-2.5 sm:py-3 border-2 border-white/30 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-white outline-none transition-all text-white text-sm placeholder-white/60 bg-white/10 backdrop-blur-sm disabled:opacity-50"
+                    />
+                  </div>
+
+                  <div className="relative flex-1 min-w-[120px]">
+                    <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white/60" />
+                    <input
+                      type="tel"
+                      name="phone"
+                      required
+                      placeholder="Phone"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      disabled={status === 'loading'}
+                      className="w-full pl-10 pr-3 py-2.5 sm:py-3 border-2 border-white/30 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-white outline-none transition-all text-white text-sm placeholder-white/60 bg-white/10 backdrop-blur-sm disabled:opacity-50"
+                    />
+                  </div>
+
+                  <div className="relative flex-1 min-w-[140px]">
+                    <Car className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white/60" />
+                    <select
+                      name="car"
+                      required
+                      value={formData.car}
+                      onChange={(e) => setFormData({ ...formData, car: e.target.value })}
+                      disabled={status === 'loading'}
+                      className="w-full pl-10 pr-3 py-2.5 sm:py-3 border-2 border-white/30 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-white outline-none transition-all text-white text-sm bg-white/10 backdrop-blur-sm disabled:opacity-50 appearance-none cursor-pointer"
+                    >
+                      <option value="" disabled className="text-gray-800 bg-white">{t.contact.carLabel}</option>
+                      {cars.map((car) => (
+                        <option key={car.id} value={car.name} className="text-gray-800 bg-white">
+                          {car.name} - €{car.price}/day
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                {/* Second Row - Date From + Time From, Date To + Time To */}
+                <div className="flex flex-wrap gap-2 sm:gap-3 items-end">
+                  <div className="flex gap-2 flex-1 min-w-[200px]">
+                    <div className="relative flex-[2]">
+                      <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white/60" />
+                      <input
+                        type="date"
+                        name="dateFrom"
+                        required
+                        value={formData.dateFrom}
+                        min={new Date().toISOString().split('T')[0]}
+                        onChange={(e) => setFormData({ ...formData, dateFrom: e.target.value })}
+                        disabled={status === 'loading'}
+                        className="w-full pl-10 pr-3 py-2.5 sm:py-3 border-2 border-white/30 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-white outline-none transition-all text-white text-sm bg-white/10 backdrop-blur-sm disabled:opacity-50"
+                      />
+                    </div>
+                    <div className="relative flex-1 min-w-[90px]">
+                      <input
+                        type="time"
+                        name="timeFrom"
+                        required
+                        value={formData.timeFrom}
+                        onChange={(e) => setFormData({ ...formData, timeFrom: e.target.value })}
+                        disabled={status === 'loading'}
+                        className="w-full pl-3 pr-2 py-2.5 sm:py-3 border-2 border-white/30 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-white outline-none transition-all text-white text-sm bg-white/10 backdrop-blur-sm disabled:opacity-50"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex gap-2 flex-1 min-w-[200px]">
+                    <div className="relative flex-[2]">
+                      <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white/60" />
+                      <input
+                        type="date"
+                        name="dateTo"
+                        required
+                        value={formData.dateTo}
+                        min={formData.dateFrom || new Date().toISOString().split('T')[0]}
+                        onChange={(e) => setFormData({ ...formData, dateTo: e.target.value })}
+                        disabled={status === 'loading'}
+                        className="w-full pl-10 pr-3 py-2.5 sm:py-3 border-2 border-white/30 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-white outline-none transition-all text-white text-sm bg-white/10 backdrop-blur-sm disabled:opacity-50"
+                      />
+                    </div>
+                    <div className="relative flex-1 min-w-[90px]">
+                      <input
+                        type="time"
+                        name="timeTo"
+                        required
+                        value={formData.timeTo}
+                        onChange={(e) => setFormData({ ...formData, timeTo: e.target.value })}
+                        disabled={status === 'loading'}
+                        className="w-full pl-3 pr-2 py-2.5 sm:py-3 border-2 border-white/30 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-white outline-none transition-all text-white text-sm bg-white/10 backdrop-blur-sm disabled:opacity-50"
+                      />
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={status === 'loading'}
+                    className="bg-white hover:bg-[#1E5BD7] text-[#0A2A66] hover:text-white font-bold px-6 sm:px-8 py-2.5 sm:py-3 rounded-xl transition-all duration-300 transform hover:scale-[1.02] hover:shadow-2xl hover:shadow-[#1E5BD7]/30 text-sm sm:text-base group disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none whitespace-nowrap"
+                  >
+                    <span className="flex items-center justify-center gap-2">
+                      {status === 'loading' ? (
+                        <>
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          <span>Sending...</span>
+                        </>
+                      ) : (
+                        <>
+                          {t.contact.submit}
+                          <span className="group-hover:translate-x-1 transition-transform">→</span>
+                        </>
+                      )}
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
