@@ -228,7 +228,7 @@ function Hero() {
                 <div className="space-y-2 sm:space-y-0 sm:flex sm:flex-row sm:flex-wrap sm:gap-2 sm:gap-3 sm:items-end">
                   <div className="flex gap-2 w-full sm:flex-1 sm:min-w-[200px]">
                     <div className="relative flex-[2] min-w-0">
-                      <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white/60" />
+                      <Calendar className="absolute left-2 top-1/2 transform -translate-y-1/2 w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/60" />
                       <input
                         type="date"
                         name="dateFrom"
@@ -237,10 +237,10 @@ function Hero() {
                         min={new Date().toISOString().split('T')[0]}
                         onChange={(e) => setFormData({ ...formData, dateFrom: e.target.value })}
                         disabled={status === 'loading'}
-                        className="w-full pl-10 pr-3 py-2.5 sm:py-3 border-2 border-white/30 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-white outline-none transition-all text-white text-sm bg-white/10 backdrop-blur-sm disabled:opacity-50"
+                        className="w-full pl-8 pr-2 sm:pl-10 sm:pr-3 py-2 sm:py-2.5 sm:py-3 border-2 border-white/30 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-white outline-none transition-all text-white text-xs sm:text-sm bg-white/10 backdrop-blur-sm disabled:opacity-50"
                       />
                     </div>
-                    <div className="relative flex-1 min-w-[90px]">
+                    <div className="relative flex-1 min-w-[80px] sm:min-w-[90px]">
                       <input
                         type="time"
                         name="timeFrom"
@@ -248,14 +248,14 @@ function Hero() {
                         value={formData.timeFrom}
                         onChange={(e) => setFormData({ ...formData, timeFrom: e.target.value })}
                         disabled={status === 'loading'}
-                        className="w-full pl-3 pr-2 py-2.5 sm:py-3 border-2 border-white/30 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-white outline-none transition-all text-white text-sm bg-white/10 backdrop-blur-sm disabled:opacity-50"
+                        className="w-full pl-2 pr-2 sm:pl-3 sm:pr-2 py-2 sm:py-2.5 sm:py-3 border-2 border-white/30 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-white outline-none transition-all text-white text-xs sm:text-sm bg-white/10 backdrop-blur-sm disabled:opacity-50"
                       />
                     </div>
                   </div>
 
                   <div className="flex gap-2 w-full sm:flex-1 sm:min-w-[200px]">
                     <div className="relative flex-[2] min-w-0">
-                      <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white/60" />
+                      <Calendar className="absolute left-2 top-1/2 transform -translate-y-1/2 w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/60" />
                       <input
                         type="date"
                         name="dateTo"
@@ -264,10 +264,10 @@ function Hero() {
                         min={formData.dateFrom || new Date().toISOString().split('T')[0]}
                         onChange={(e) => setFormData({ ...formData, dateTo: e.target.value })}
                         disabled={status === 'loading'}
-                        className="w-full pl-10 pr-3 py-2.5 sm:py-3 border-2 border-white/30 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-white outline-none transition-all text-white text-sm bg-white/10 backdrop-blur-sm disabled:opacity-50"
+                        className="w-full pl-8 pr-2 sm:pl-10 sm:pr-3 py-2 sm:py-2.5 sm:py-3 border-2 border-white/30 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-white outline-none transition-all text-white text-xs sm:text-sm bg-white/10 backdrop-blur-sm disabled:opacity-50"
                       />
                     </div>
-                    <div className="relative flex-1 min-w-[90px]">
+                    <div className="relative flex-1 min-w-[80px] sm:min-w-[90px]">
                       <input
                         type="time"
                         name="timeTo"
@@ -275,7 +275,7 @@ function Hero() {
                         value={formData.timeTo}
                         onChange={(e) => setFormData({ ...formData, timeTo: e.target.value })}
                         disabled={status === 'loading'}
-                        className="w-full pl-3 pr-2 py-2.5 sm:py-3 border-2 border-white/30 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-white outline-none transition-all text-white text-sm bg-white/10 backdrop-blur-sm disabled:opacity-50"
+                        className="w-full pl-2 pr-2 sm:pl-3 sm:pr-2 py-2 sm:py-2.5 sm:py-3 border-2 border-white/30 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-white outline-none transition-all text-white text-xs sm:text-sm bg-white/10 backdrop-blur-sm disabled:opacity-50"
                       />
                     </div>
                   </div>
