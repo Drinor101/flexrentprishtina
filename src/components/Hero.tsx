@@ -225,8 +225,8 @@ function Hero() {
                 </div>
 
                 {/* Second Row - Date From + Time From, Date To + Time To */}
-                <div className="flex flex-wrap gap-2 sm:gap-3 items-end">
-                  <div className="flex gap-2 flex-1 min-w-[200px]">
+                <div className="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3 items-end">
+                  <div className="flex gap-2 w-full sm:flex-1 sm:min-w-[200px]">
                     <div className="relative flex-[2]">
                       <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white/60" />
                       <input
@@ -253,7 +253,7 @@ function Hero() {
                     </div>
                   </div>
 
-                  <div className="flex gap-2 flex-1 min-w-[200px]">
+                  <div className="flex gap-2 w-full sm:flex-1 sm:min-w-[200px]">
                     <div className="relative flex-[2]">
                       <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white/60" />
                       <input
@@ -283,7 +283,7 @@ function Hero() {
                   <button
                     type="submit"
                     disabled={status === 'loading'}
-                    className="bg-white hover:bg-[#1E5BD7] text-[#0A2A66] hover:text-white font-bold px-6 sm:px-8 py-2.5 sm:py-3 rounded-xl transition-all duration-300 transform hover:scale-[1.02] hover:shadow-2xl hover:shadow-[#1E5BD7]/30 text-sm sm:text-base group disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none whitespace-nowrap"
+                    className="w-full sm:w-auto bg-white hover:bg-[#1E5BD7] text-[#0A2A66] hover:text-white font-bold px-6 sm:px-8 py-2.5 sm:py-3 rounded-xl transition-all duration-300 transform hover:scale-[1.02] hover:shadow-2xl hover:shadow-[#1E5BD7]/30 text-sm sm:text-base group disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none whitespace-nowrap"
                   >
                     <span className="flex items-center justify-center gap-2">
                       {status === 'loading' ? (
