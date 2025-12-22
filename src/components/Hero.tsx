@@ -225,9 +225,9 @@ function Hero() {
                 </div>
 
                 {/* Second Row - Date From + Time From, Date To + Time To */}
-                <div className="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3 items-end">
+                <div className="space-y-2 sm:space-y-0 sm:flex sm:flex-row sm:flex-wrap sm:gap-2 sm:gap-3 sm:items-end">
                   <div className="flex gap-2 w-full sm:flex-1 sm:min-w-[200px]">
-                    <div className="relative flex-[2]">
+                    <div className="relative flex-[2] min-w-0">
                       <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white/60" />
                       <input
                         type="date"
@@ -254,7 +254,7 @@ function Hero() {
                   </div>
 
                   <div className="flex gap-2 w-full sm:flex-1 sm:min-w-[200px]">
-                    <div className="relative flex-[2]">
+                    <div className="relative flex-[2] min-w-0">
                       <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white/60" />
                       <input
                         type="date"
