@@ -275,8 +275,8 @@ function Hero() {
                 </div>
 
                 {/* Second Row - Date From + Time From, Date To + Time To */}
-                <div className="space-y-2 sm:space-y-0 sm:flex sm:flex-row sm:flex-wrap sm:gap-2 sm:gap-3 sm:items-end">
-                  <div className="flex gap-2 w-full sm:flex-1 sm:min-w-[200px]">
+                <div className="space-y-2 md:space-y-0 md:flex md:flex-row md:flex-wrap md:gap-2 md:gap-3 md:items-end">
+                  <div className="flex gap-2 w-full md:flex-1 md:min-w-[220px] lg:min-w-[240px]">
                     <div className="relative flex-[2] min-w-0">
                       <Calendar className="absolute left-2 top-1/2 transform -translate-y-1/2 w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/60" />
                       <input
@@ -290,7 +290,7 @@ function Hero() {
                         className="w-full pl-8 pr-2 sm:pl-10 sm:pr-3 py-2 sm:py-2.5 sm:py-3 border-2 border-white/30 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-white outline-none transition-all text-white text-xs sm:text-sm bg-white/10 backdrop-blur-sm disabled:opacity-50"
                       />
                     </div>
-                    <div className="relative flex-1 min-w-[80px] sm:min-w-[90px]">
+                    <div className="relative flex-1 min-w-[80px] sm:min-w-[90px] md:min-w-[100px]">
                       <input
                         type="time"
                         name="timeFrom"
@@ -303,7 +303,7 @@ function Hero() {
                     </div>
                   </div>
 
-                  <div className="flex gap-2 w-full sm:flex-1 sm:min-w-[200px]">
+                  <div className="flex gap-2 w-full md:flex-1 md:min-w-[220px] lg:min-w-[240px]">
                     <div className="relative flex-[2] min-w-0">
                       <Calendar className="absolute left-2 top-1/2 transform -translate-y-1/2 w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/60" />
                       <input
@@ -317,7 +317,7 @@ function Hero() {
                         className="w-full pl-8 pr-2 sm:pl-10 sm:pr-3 py-2 sm:py-2.5 sm:py-3 border-2 border-white/30 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-white outline-none transition-all text-white text-xs sm:text-sm bg-white/10 backdrop-blur-sm disabled:opacity-50"
                       />
                     </div>
-                    <div className="relative flex-1 min-w-[80px] sm:min-w-[90px]">
+                    <div className="relative flex-1 min-w-[80px] sm:min-w-[90px] md:min-w-[100px]">
                       <input
                         type="time"
                         name="timeTo"
@@ -333,7 +333,7 @@ function Hero() {
                   <button
                     type="submit"
                     disabled={status === 'loading'}
-                    className="w-full sm:w-auto bg-white hover:bg-[#1E5BD7] text-[#0A2A66] hover:text-white font-bold px-6 sm:px-8 py-2.5 sm:py-3 rounded-xl transition-all duration-300 transform hover:scale-[1.02] hover:shadow-2xl hover:shadow-[#1E5BD7]/30 text-sm sm:text-base group disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none whitespace-nowrap"
+                    className="w-full md:w-auto bg-white hover:bg-[#1E5BD7] text-[#0A2A66] hover:text-white font-bold px-6 sm:px-8 py-2.5 sm:py-3 rounded-xl transition-all duration-300 transform hover:scale-[1.02] hover:shadow-2xl hover:shadow-[#1E5BD7]/30 text-sm sm:text-base group disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none whitespace-nowrap"
                   >
                     <span className="flex items-center justify-center gap-2">
                       {status === 'loading' ? (
