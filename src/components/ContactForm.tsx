@@ -25,6 +25,51 @@ function ContactForm() {
     setFormData(prev => ({ ...prev, pickupLocation: t.contact.pickupLocationAirport }));
   }, [t.contact.pickupLocationAirport]);
 
+  // Calculate rental days based on Excel formula
+  // Formula: MAX(0, INT(H4)-INT(F4) + IF(I4 > TIME(13,30,0), 1, 0))
+  // F4 = pickup date + time, H4 = return date + time, I4 = return time
+  const calculateRentalDays = (): number => {
+    if (!formData.dateFrom || !formData.timeFrom || !formData.dateTo || !formData.timeTo) {
+      return 0;
+    }
+
+    // Combine date and time into Date objects
+    const pickupDateTime = new Date(`${formData.dateFrom}T${formData.timeFrom}`);
+    const returnDateTime = new Date(`${formData.dateTo}T${formData.timeTo}`);
+
+    // INT(H4) - INT(F4): Calculate full days between dates
+    const pickupDateOnly = new Date(pickupDateTime.getFullYear(), pickupDateTime.getMonth(), pickupDateTime.getDate());
+    const returnDateOnly = new Date(returnDateTime.getFullYear(), returnDateTime.getMonth(), returnDateTime.getDate());
+    
+    const daysDifference = Math.floor((returnDateOnly.getTime() - pickupDateOnly.getTime()) / (1000 * 60 * 60 * 24));
+
+    // Extract hours and minutes from return time (I4)
+    const [returnHours, returnMinutes] = formData.timeTo.split(':').map(Number);
+    const returnTimeInHours = returnHours + returnMinutes / 60;
+
+    // IF(I4 > TIME(13,30,0), 1, 0): If return time is after 13:30, add 1 day
+    const extraDay = returnTimeInHours > 13.5 ? 1 : 0;
+
+    // MAX(0, ...): Ensure rental days is never negative
+    return Math.max(0, daysDifference + extraDay);
+  };
+
+  // Calculate total price
+  const calculateTotalPrice = (): number => {
+    const rentalDays = calculateRentalDays();
+    if (rentalDays === 0 || !formData.car) {
+      return 0;
+    }
+
+    // Find selected car price
+    const selectedCar = cars.find(car => car.name === formData.car);
+    if (!selectedCar) {
+      return 0;
+    }
+
+    return rentalDays * selectedCar.price;
+  };
+
   // Formspree Configuration
   // Formspree endpoint - form submissions will be sent to this URL
   const FORMSPREE_ENDPOINT = 'https://formspree.io/f/myzqwqyq';
@@ -240,6 +285,32 @@ function ContactForm() {
                 {t.contact.timeTo}
               </label>
             </div>
+
+            {/* Price Calculation Display - Inside Form */}
+            {formData.car && formData.dateFrom && formData.timeFrom && formData.dateTo && formData.timeTo && (
+              <div className="bg-[#1E5BD7]/10 backdrop-blur-sm border-2 border-[#1E5BD7]/30 rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
+                  <div className="flex flex-col gap-2">
+                    <p className="text-[#0A0A0A]/70 text-sm sm:text-base font-medium">
+                      Rental Period: <span className="text-[#0A0A0A] font-semibold">{calculateRentalDays()}</span> {calculateRentalDays() === 1 ? 'day' : 'days'}
+                    </p>
+                    {(() => {
+                      const selectedCar = cars.find(car => car.name === formData.car);
+                      return selectedCar ? (
+                        <p className="text-[#0A0A0A]/70 text-sm sm:text-base font-medium">
+                          Price per day: <span className="text-[#0A0A0A] font-semibold">€{selectedCar.price}</span>
+                        </p>
+                      ) : null;
+                    })()}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[#0A0A0A] text-lg sm:text-2xl md:text-3xl font-bold">
+                      Total: <span className="text-[#0A0A0A]">€{calculateTotalPrice().toFixed(2)}</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* Pickup Location */}
             <div className="relative">
