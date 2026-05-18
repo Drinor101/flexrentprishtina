@@ -1,16 +1,6 @@
 import { Users, Calendar, Gauge } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
-
-interface Car {
-  id: number;
-  name: string;
-  category: string;
-  image: string;
-  price: number;
-  passengers: number;
-  year: number;
-  transmission: string;
-}
+import type { Car } from '../data/cars';
 
 interface CarCardProps {
   car: Car;
@@ -63,9 +53,21 @@ function CarCard({ car, index }: CarCardProps) {
         </div>
 
         <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between mt-auto gap-4">
-          <div>
-            <span className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0A0A0A]">€{car.price}</span>
-            <span className="text-[#0A0A0A]/70 ml-2 text-base sm:text-lg">/day</span>
+          <div className="space-y-2">
+            <div>
+              <p className="text-xs sm:text-sm font-semibold text-[#0A0A0A]/60 uppercase tracking-wide">Flex Basic</p>
+              <p>
+                <span className="text-2xl sm:text-3xl font-extrabold text-[#0A0A0A]">€{car.priceBasic}</span>
+                <span className="text-[#0A0A0A]/70 ml-1 text-sm sm:text-base">/day</span>
+              </p>
+            </div>
+            <div>
+              <p className="text-xs sm:text-sm font-semibold text-[#1E5BD7]/80 uppercase tracking-wide">Flex Premium</p>
+              <p>
+                <span className="text-2xl sm:text-3xl font-extrabold text-[#0A2A66]">€{car.pricePremium}</span>
+                <span className="text-[#0A0A0A]/70 ml-1 text-sm sm:text-base">/day</span>
+              </p>
+            </div>
           </div>
           <a
             href="#contact"

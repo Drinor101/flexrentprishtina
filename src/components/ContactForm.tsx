@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Mail, Phone, User, Calendar, MessageSquare, CheckCircle2, XCircle, Loader2, Car, Clock, MapPin } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
-import { cars } from '../data/cars';
+import { cars, getCarDailyPrice, type RentalPlan } from '../data/cars';
 
 function ContactForm() {
   const { t } = useLanguage();
@@ -10,6 +10,7 @@ function ContactForm() {
     email: '',
     phone: '',
     car: '',
+    rentalPlan: 'basic' as RentalPlan,
     dateFrom: '',
     timeFrom: '',
     dateTo: '',
@@ -67,7 +68,7 @@ function ContactForm() {
       return 0;
     }
 
-    return rentalDays * selectedCar.price;
+    return rentalDays * getCarDailyPrice(selectedCar, formData.rentalPlan);
   };
 
   // Formspree Configuration
@@ -91,6 +92,7 @@ function ContactForm() {
           email: formData.email,
           phone: formData.phone,
           car: formData.car,
+          rentalPlan: formData.rentalPlan === 'premium' ? 'Flex Premium' : 'Flex Basic',
           dateFrom: formData.dateFrom,
           timeFrom: formData.timeFrom,
           dateTo: formData.dateTo,
@@ -103,7 +105,7 @@ function ContactForm() {
 
       if (response.ok) {
         setStatus('success');
-        setFormData({ name: '', email: '', phone: '', car: '', dateFrom: '', timeFrom: '', dateTo: '', timeTo: '', pickupLocation: '', message: '' });
+        setFormData({ name: '', email: '', phone: '', car: '', rentalPlan: 'basic', dateFrom: '', timeFrom: '', dateTo: '', timeTo: '', pickupLocation: '', message: '' });
         // Reset success message after 5 seconds
         setTimeout(() => {
           setStatus('idle');
@@ -127,7 +129,7 @@ function ContactForm() {
     <section id="contact" className="py-24 sm:py-32 bg-gradient-to-b from-gray-50/50 via-white to-gray-50/50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-20 scroll-reveal">
+          <div className="text-center mb-20">
             <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-[#0A0A0A] mb-6 sm:mb-8 tracking-tight">
               {t.contact.title}
             </h2>
@@ -136,7 +138,7 @@ function ContactForm() {
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6 bg-white rounded-3xl sm:rounded-[2rem] p-6 sm:p-8 md:p-10 lg:p-14 shadow-xl border border-gray-200/50 scroll-reveal">
+          <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6 bg-white rounded-3xl sm:rounded-[2rem] p-6 sm:p-8 md:p-10 lg:p-14 shadow-xl border border-gray-200/50">
             {/* Success Message */}
             {status === 'success' && (
               <div className="bg-green-50/80 backdrop-blur-sm border-2 border-green-300/50 rounded-xl sm:rounded-2xl p-4 sm:p-5 flex items-center gap-3 sm:gap-4 animate-fade-in">
@@ -210,9 +212,23 @@ function ContactForm() {
                 </option>
                 {cars.map((car) => (
                   <option key={car.id} value={car.name} className="text-[#0A0A0A]">
-                    {car.name} - €{car.price}/day
+                    {car.name} — Basic €{car.priceBasic} · Premium €{car.pricePremium}
                   </option>
                 ))}
+              </select>
+            </div>
+
+            <div className="relative">
+              <select
+                name="rentalPlan"
+                required
+                value={formData.rentalPlan}
+                onChange={(e) => setFormData({ ...formData, rentalPlan: e.target.value as RentalPlan })}
+                disabled={status === 'loading'}
+                className="w-full px-4 sm:px-5 py-3.5 sm:py-4 md:py-5 border-2 border-gray-200/80 rounded-xl sm:rounded-2xl focus:ring-2 focus:ring-[#1E5BD7]/20 focus:border-[#1E5BD7] outline-none transition-all duration-300 text-[#0A0A0A] text-sm sm:text-base font-light hover:border-[#0A2A66]/30 disabled:opacity-50 disabled:cursor-not-allowed bg-gray-50/50 appearance-none cursor-pointer"
+              >
+                <option value="basic">Flex Basic</option>
+                <option value="premium">Flex Premium</option>
               </select>
             </div>
 
@@ -298,7 +314,8 @@ function ContactForm() {
                       const selectedCar = cars.find(car => car.name === formData.car);
                       return selectedCar ? (
                         <p className="text-[#0A0A0A]/70 text-sm sm:text-base font-medium">
-                          Price per day: <span className="text-[#0A0A0A] font-semibold">€{selectedCar.price}</span>
+                          Price per day: <span className="text-[#0A0A0A] font-semibold">€{getCarDailyPrice(selectedCar, formData.rentalPlan)}</span>
+                          <span className="text-[#0A0A0A]/60"> ({formData.rentalPlan === 'premium' ? 'Flex Premium' : 'Flex Basic'})</span>
                         </p>
                       ) : null;
                     })()}

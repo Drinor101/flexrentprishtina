@@ -17,7 +17,7 @@ function CarShowcase() {
 
   // Automatically sort by price (low to high) when "all" filter is selected
   if (filter === 'all') {
-    filteredCars = [...filteredCars].sort((a, b) => a.price - b.price);
+    filteredCars = [...filteredCars].sort((a, b) => a.priceBasic - b.priceBasic);
   }
 
   // Build filter options: 'all' + available brand categories

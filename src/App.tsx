@@ -16,16 +16,32 @@ function App() {
       rootMargin: '0px 0px -50px 0px',
     };
 
+    const revealElement = (el: Element) => {
+      el.classList.add('revealed');
+    };
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
+          revealElement(entry.target);
         }
       });
     }, observerOptions);
 
-    const elements = document.querySelectorAll('.scroll-reveal');
-    elements.forEach((el) => observer.observe(el));
+    const observeScrollReveals = () => {
+      const elements = document.querySelectorAll('.scroll-reveal:not(.revealed)');
+      elements.forEach((el) => {
+        observer.observe(el);
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          revealElement(el);
+        }
+      });
+    };
+
+    observeScrollReveals();
+    // Re-check after layout settles (images, fonts) so below-the-fold sections still reveal
+    const layoutTimer = window.setTimeout(observeScrollReveals, 100);
 
     // Enhanced smooth scroll with easing
     const smoothScrollTo = (targetPosition: number, duration: number = 1200) => {
@@ -77,7 +93,8 @@ function App() {
     document.addEventListener('click', handleSmoothScroll);
 
     return () => {
-      elements.forEach((el) => observer.unobserve(el));
+      window.clearTimeout(layoutTimer);
+      observer.disconnect();
       document.removeEventListener('click', handleSmoothScroll);
     };
   }, []);

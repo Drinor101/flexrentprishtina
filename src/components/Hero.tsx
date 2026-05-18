@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Car, Phone, CheckCircle2, Mail, User, Calendar, XCircle, Loader2 } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
 import LanguageSwitcher from './LanguageSwitcher';
-import { cars } from '../data/cars';
+import { cars, getCarDailyPrice, type RentalPlan } from '../data/cars';
 
 function Hero() {
   const { t } = useLanguage();
@@ -11,6 +11,7 @@ function Hero() {
     email: '',
     phone: '',
     car: '',
+    rentalPlan: 'basic' as RentalPlan,
     dateFrom: '',
     timeFrom: '',
     dateTo: '',
@@ -68,7 +69,7 @@ function Hero() {
       return 0;
     }
 
-    return rentalDays * selectedCar.price;
+    return rentalDays * getCarDailyPrice(selectedCar, formData.rentalPlan);
   };
 
   // Formspree Configuration
@@ -91,6 +92,7 @@ function Hero() {
           email: formData.email,
           phone: formData.phone,
           car: formData.car,
+          rentalPlan: formData.rentalPlan === 'premium' ? 'Flex Premium' : 'Flex Basic',
           dateFrom: formData.dateFrom,
           timeFrom: formData.timeFrom,
           dateTo: formData.dateTo,
@@ -103,7 +105,7 @@ function Hero() {
 
       if (response.ok) {
         setStatus('success');
-        setFormData({ name: '', email: '', phone: '', car: '', dateFrom: '', timeFrom: '', dateTo: '', timeTo: '', pickupLocation: '', message: '' });
+        setFormData({ name: '', email: '', phone: '', car: '', rentalPlan: 'basic', dateFrom: '', timeFrom: '', dateTo: '', timeTo: '', pickupLocation: '', message: '' });
         setTimeout(() => {
           setStatus('idle');
         }, 5000);
@@ -267,9 +269,23 @@ function Hero() {
                       <option value="" disabled className="text-gray-800 bg-white">{t.contact.carLabel}</option>
                       {cars.map((car) => (
                         <option key={car.id} value={car.name} className="text-gray-800 bg-white">
-                          {car.name} - €{car.price}/day
+                          {car.name} — Basic €{car.priceBasic} · Premium €{car.pricePremium}
                         </option>
                       ))}
+                    </select>
+                  </div>
+
+                  <div className="relative flex-1 min-w-[140px]">
+                    <select
+                      name="rentalPlan"
+                      required
+                      value={formData.rentalPlan}
+                      onChange={(e) => setFormData({ ...formData, rentalPlan: e.target.value as RentalPlan })}
+                      disabled={status === 'loading'}
+                      className="w-full px-3 py-2.5 sm:py-3 border-2 border-white/30 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-white outline-none transition-all text-white text-sm bg-white/10 backdrop-blur-sm disabled:opacity-50 appearance-none cursor-pointer"
+                    >
+                      <option value="basic" className="text-gray-800 bg-white">Flex Basic</option>
+                      <option value="premium" className="text-gray-800 bg-white">Flex Premium</option>
                     </select>
                   </div>
                 </div>
@@ -365,7 +381,8 @@ function Hero() {
                       const selectedCar = cars.find(car => car.name === formData.car);
                       return selectedCar ? (
                         <p className="text-white/80 text-sm sm:text-base font-medium">
-                          Price per day: <span className="text-white font-semibold">€{selectedCar.price}</span>
+                          Price per day: <span className="text-white font-semibold">€{getCarDailyPrice(selectedCar, formData.rentalPlan)}</span>
+                          <span className="text-white/70"> ({formData.rentalPlan === 'premium' ? 'Flex Premium' : 'Flex Basic'})</span>
                         </p>
                       ) : null;
                     })()}
