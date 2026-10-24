@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react';
-import { Car, Phone, CheckCircle2, Mail, User, Calendar, XCircle, Loader2 } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { Car, Phone, CheckCircle2, Mail, User, Calendar, Clock, ChevronDown, Gem, XCircle, Loader2 } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
-import LanguageSwitcher from './LanguageSwitcher';
 import { cars, getCarDailyPrice, type RentalPlan } from '../data/cars';
+import { prefersReducedMotion, stagger } from '../lib/motion';
+import BenefitsAccordion from './BenefitsAccordion';
+import heroBg from '../assets/hero-bg.webp';
 
 function Hero() {
   const { t } = useLanguage();
@@ -21,6 +23,28 @@ function Hero() {
   });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+  const bgRef = useRef<HTMLImageElement>(null);
+
+  // Slow parallax on the background photo while the hero is on screen
+  useEffect(() => {
+    if (prefersReducedMotion()) return;
+
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const offset = Math.min(window.scrollY, window.innerHeight);
+      if (bgRef.current) bgRef.current.style.transform = `translate3d(0, ${offset * 0.18}px, 0)`;
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      cancelAnimationFrame(frame);
+    };
+  }, []);
 
   // Set pickup location to airport on mount and when language changes
   useEffect(() => {
@@ -42,7 +66,7 @@ function Hero() {
     // INT(H4) - INT(F4): Calculate full days between dates
     const pickupDateOnly = new Date(pickupDateTime.getFullYear(), pickupDateTime.getMonth(), pickupDateTime.getDate());
     const returnDateOnly = new Date(returnDateTime.getFullYear(), returnDateTime.getMonth(), returnDateTime.getDate());
-    
+
     const daysDifference = Math.floor((returnDateOnly.getTime() - pickupDateOnly.getTime()) / (1000 * 60 * 60 * 24));
 
     // Extract hours and minutes from return time (I4)
@@ -123,225 +147,228 @@ function Hero() {
     }
   };
 
+  const benefits = [t.hero.benefit1, t.hero.benefit2, t.hero.benefit3, t.hero.benefit4, t.hero.benefit5];
+
   return (
-    <div className="relative min-h-screen overflow-x-hidden">
-      {/* Navigation Bar */}
-      <div className="absolute top-0 left-0 right-0 z-30 bg-gradient-to-b from-[#0A2A66]/90 to-transparent backdrop-blur-md p-4 sm:p-6 min-h-[72px] flex items-center">
-        <div className="container mx-auto flex justify-end w-full">
-          <LanguageSwitcher />
-        </div>
+    <div className="relative min-h-[100svh] overflow-hidden bg-ink">
+      {/* Background Photo */}
+      <div className="hero-zoom absolute inset-0">
+        <img
+          ref={bgRef}
+          src={heroBg}
+          alt=""
+          aria-hidden="true"
+          width={1280}
+          height={960}
+          decoding="async"
+          className="h-full w-full object-cover will-change-transform"
+        />
       </div>
 
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0A2A66]/90 via-[#0A2A66]/70 to-[#12408C]/80 z-10" />
-
-      {/* Background Image */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat" 
-        style={{ 
-          backgroundImage: `url('https://images.pexels.com/photos/12532746/pexels-photo-12532746.jpeg?auto=compress&cs=tinysrgb&w=1920')` 
-        }} 
-      />
+      {/* Dark Overlays */}
+      <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/85 to-ink/45 z-10" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_85%_10%,rgba(201,162,75,0.18),transparent_55%)] z-10" />
+      <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-ink to-transparent z-10" />
 
       {/* Content */}
-      <div className="relative z-20 flex items-start sm:items-center pt-28 pb-12 sm:pt-20 md:pt-24 lg:pt-28 sm:pb-8 min-h-screen">
+      <div className="relative z-20 flex items-center pt-28 pb-16 sm:pt-32 lg:pt-24 min-h-[100svh]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="max-w-4xl animate-fade-in-up">
-            {/* Logo & Title */}
-            <div className="flex flex-row items-center gap-3 sm:gap-4 md:gap-5 mb-5 sm:mb-6 md:mb-8 relative z-10">
-              <div className="relative flex-shrink-0">
-                <Car className="w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 text-white drop-shadow-2xl animate-float" />
-                <div className="absolute inset-0 bg-white/30 blur-2xl rounded-full"></div>
-              </div>
-              <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white leading-[1.1] tracking-tight drop-shadow-2xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-16 items-center">
+            {/* Left - Brand & Benefits */}
+            <div className="lg:col-span-7">
+              <h1 className="fx-up font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-bone leading-[1.05] tracking-tight mb-5 sm:mb-6" style={stagger(0)}>
                 {t.hero.title}
               </h1>
+
+              {/* Subtitle */}
+              <p className="fx-up text-base sm:text-lg lg:text-xl text-bone/70 font-light leading-relaxed max-w-2xl mb-8 sm:mb-10" style={stagger(120)}>
+                {t.hero.subtitle}
+              </p>
+
+              {/* Benefits Card */}
+              <div className="fx-up rounded-2xl border border-white/10 bg-black/40 backdrop-blur-md p-5 sm:p-7" style={stagger(240)}>
+                <h2 className="font-display text-xl sm:text-2xl font-semibold text-bone mb-2 sm:mb-3 flex items-center gap-3">
+                  <span className="w-1 h-6 bg-gold rounded-full flex-shrink-0"></span>
+                  <span>{t.hero.whyChooseUs}</span>
+                </h2>
+                <BenefitsAccordion benefits={benefits} />
+              </div>
             </div>
 
-            {/* Subtitle */}
-            <p className="text-sm sm:text-xl md:text-2xl lg:text-3xl text-gray-100 mb-4 sm:mb-10 leading-relaxed font-light max-w-3xl">
-              {t.hero.subtitle}
-            </p>
+            {/* Right - Booking Form */}
+            <div className="lg:col-span-5">
+              <form onSubmit={handleSubmit} className="fx-up relative rounded-2xl border border-gold/25 bg-ink-soft/90 backdrop-blur-xl p-5 sm:p-7 shadow-2xl shadow-black/60" style={stagger(200)}>
+                <span className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-gold to-transparent"></span>
 
-            {/* Benefits Card */}
-            <div className="bg-white/10 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-4 sm:p-8 md:p-10 border border-white/20 shadow-2xl mb-6 sm:mb-10 animate-fade-in-delay hover:bg-white/15 transition-all duration-500">
-              <h2 className="text-lg sm:text-2xl md:text-3xl font-bold text-white mb-3 sm:mb-6 flex items-center gap-2 sm:gap-3">
-                <span className="w-1 h-5 sm:h-8 bg-[#1E5BD7] rounded-full flex-shrink-0"></span>
-                <span>{t.hero.whyChooseUs}</span>
-              </h2>
-              <ul className="space-y-2.5 sm:space-y-4 text-white">
-                <li className="flex items-start gap-2.5 sm:gap-4 group/item">
-                  <CheckCircle2 className="w-4 h-4 sm:w-6 sm:h-6 text-[#1E5BD7] mt-0.5 flex-shrink-0 group-hover/item:scale-110 transition-transform" />
-                  <span className="text-xs sm:text-lg md:text-xl leading-relaxed">{t.hero.benefit1}</span>
-                </li>
-                <li className="flex items-start gap-2.5 sm:gap-4 group/item">
-                  <CheckCircle2 className="w-4 h-4 sm:w-6 sm:h-6 text-[#1E5BD7] mt-0.5 flex-shrink-0 group-hover/item:scale-110 transition-transform" />
-                  <span className="text-xs sm:text-lg md:text-xl leading-relaxed">{t.hero.benefit2}</span>
-                </li>
-                <li className="flex items-start gap-2.5 sm:gap-4 group/item">
-                  <CheckCircle2 className="w-4 h-4 sm:w-6 sm:h-6 text-[#1E5BD7] mt-0.5 flex-shrink-0 group-hover/item:scale-110 transition-transform" />
-                  <span className="text-xs sm:text-lg md:text-xl leading-relaxed">{t.hero.benefit3}</span>
-                </li>
-                <li className="flex items-start gap-2.5 sm:gap-4 group/item">
-                  <CheckCircle2 className="w-4 h-4 sm:w-6 sm:h-6 text-[#1E5BD7] mt-0.5 flex-shrink-0 group-hover/item:scale-110 transition-transform" />
-                  <span className="text-xs sm:text-lg md:text-xl leading-relaxed">{t.hero.benefit4}</span>
-                </li>
-                <li className="flex items-start gap-2.5 sm:gap-4 group/item">
-                  <CheckCircle2 className="w-4 h-4 sm:w-6 sm:h-6 text-[#1E5BD7] mt-0.5 flex-shrink-0 group-hover/item:scale-110 transition-transform" />
-                  <span className="text-xs sm:text-lg md:text-xl leading-relaxed">{t.hero.benefit5}</span>
-                </li>
-              </ul>
-            </div>
+                {/* Success Message */}
+                {status === 'success' && (
+                  <div className="mb-4 bg-emerald-500/10 border border-emerald-500/40 rounded-lg p-3 sm:p-4 flex items-center gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-400 flex-shrink-0" />
+                    <p className="text-emerald-200 font-medium text-xs sm:text-sm">{t.contact.success}</p>
+                  </div>
+                )}
 
-            {/* Contact Form */}
-            <form onSubmit={handleSubmit} className="bg-white/10 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 border border-white/20 shadow-2xl space-y-3 sm:space-y-4 animate-fade-in-delay">
-              {/* Success Message */}
-              {status === 'success' && (
-                <div className="bg-green-500/90 backdrop-blur-sm border-2 border-green-300 rounded-xl p-3 sm:p-4 flex items-center gap-2 sm:gap-3">
-                  <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-white flex-shrink-0" />
-                  <p className="text-white font-medium text-xs sm:text-sm">{t.contact.success}</p>
-                </div>
-              )}
+                {/* Error Message */}
+                {status === 'error' && (
+                  <div className="mb-4 bg-red-500/10 border border-red-500/40 rounded-lg p-3 sm:p-4 flex items-center gap-3">
+                    <XCircle className="w-5 h-5 text-red-400 flex-shrink-0" />
+                    <p className="text-red-200 font-medium text-xs sm:text-sm">{errorMessage || 'Failed to send message. Please try again.'}</p>
+                  </div>
+                )}
 
-              {/* Error Message */}
-              {status === 'error' && (
-                <div className="bg-red-500/90 backdrop-blur-sm border-2 border-red-300 rounded-xl p-3 sm:p-4 flex items-center gap-2 sm:gap-3">
-                  <XCircle className="w-4 h-4 sm:w-5 sm:h-5 text-white flex-shrink-0" />
-                  <p className="text-white font-medium text-xs sm:text-sm">{errorMessage || 'Failed to send message. Please try again.'}</p>
-                </div>
-              )}
-
-              <div className="space-y-3 sm:space-y-4">
-                {/* First Row */}
-                <div className="flex flex-wrap gap-2 sm:gap-3 items-end">
-                  <div className="relative flex-1 min-w-[120px]">
-                    <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white/60" />
+                <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                  <div className="relative col-span-2">
+                    <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gold/70" />
                     <input
                       type="text"
                       name="name"
                       required
+                      autoComplete="name"
+                      aria-label={t.contact.name}
                       placeholder={t.contact.name}
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       disabled={status === 'loading'}
-                      className="w-full pl-10 pr-3 py-2.5 sm:py-3 border-2 border-white/30 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-white outline-none transition-all text-white text-sm placeholder-white/60 bg-white/10 backdrop-blur-sm disabled:opacity-50"
+                      className="field pl-10 pr-3 py-3"
                     />
                   </div>
 
-                  <div className="relative flex-1 min-w-[120px]">
-                    <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white/60" />
+                  <div className="relative col-span-2 sm:col-span-1">
+                    <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gold/70" />
                     <input
                       type="email"
                       name="email"
                       required
+                      autoComplete="email"
+                      aria-label={t.contact.emailLabel}
                       placeholder="Email"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       disabled={status === 'loading'}
-                      className="w-full pl-10 pr-3 py-2.5 sm:py-3 border-2 border-white/30 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-white outline-none transition-all text-white text-sm placeholder-white/60 bg-white/10 backdrop-blur-sm disabled:opacity-50"
+                      className="field pl-10 pr-3 py-3"
                     />
                   </div>
 
-                  <div className="relative flex-1 min-w-[120px]">
-                    <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white/60" />
+                  <div className="relative col-span-2 sm:col-span-1">
+                    <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gold/70" />
                     <input
                       type="tel"
                       name="phone"
                       required
+                      autoComplete="tel"
+                      aria-label={t.contact.phoneLabel}
                       placeholder="Phone"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       disabled={status === 'loading'}
-                      className="w-full pl-10 pr-3 py-2.5 sm:py-3 border-2 border-white/30 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-white outline-none transition-all text-white text-sm placeholder-white/60 bg-white/10 backdrop-blur-sm disabled:opacity-50"
+                      className="field pl-10 pr-3 py-3"
                     />
                   </div>
 
-                  <div className="relative flex-1 min-w-[140px]">
-                    <Car className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white/60" />
+                  <div className="relative col-span-2">
+                    <Car className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gold/70" />
                     <select
                       name="car"
                       required
+                      aria-label={t.contact.carLabel}
                       value={formData.car}
                       onChange={(e) => setFormData({ ...formData, car: e.target.value })}
                       disabled={status === 'loading'}
-                      className="w-full pl-10 pr-3 py-2.5 sm:py-3 border-2 border-white/30 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-white outline-none transition-all text-white text-sm bg-white/10 backdrop-blur-sm disabled:opacity-50 appearance-none cursor-pointer"
+                      className="field pl-10 pr-9 py-3 appearance-none cursor-pointer"
                     >
-                      <option value="" disabled className="text-gray-800 bg-white">{t.contact.carLabel}</option>
+                      <option value="" disabled>{t.contact.carLabel}</option>
                       {cars.map((car) => (
-                        <option key={car.id} value={car.name} className="text-gray-800 bg-white">
+                        <option key={car.id} value={car.name}>
                           {car.name} — Basic €{car.priceBasic} · Premium €{car.pricePremium}
                         </option>
                       ))}
                     </select>
+                    <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-bone/50 pointer-events-none" />
                   </div>
 
-                  <div className="relative flex-1 min-w-[140px]">
+                  <div className="relative col-span-2">
+                    <Gem className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gold/70" />
                     <select
                       name="rentalPlan"
                       required
+                      aria-label="Flex Basic / Flex Premium"
                       value={formData.rentalPlan}
                       onChange={(e) => setFormData({ ...formData, rentalPlan: e.target.value as RentalPlan })}
                       disabled={status === 'loading'}
-                      className="w-full px-3 py-2.5 sm:py-3 border-2 border-white/30 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-white outline-none transition-all text-white text-sm bg-white/10 backdrop-blur-sm disabled:opacity-50 appearance-none cursor-pointer"
+                      className="field pl-10 pr-9 py-3 appearance-none cursor-pointer"
                     >
-                      <option value="basic" className="text-gray-800 bg-white">Flex Basic</option>
-                      <option value="premium" className="text-gray-800 bg-white">Flex Premium</option>
+                      <option value="basic">Flex Basic</option>
+                      <option value="premium">Flex Premium</option>
                     </select>
+                    <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-bone/50 pointer-events-none" />
                   </div>
-                </div>
 
-                {/* Second Row - Date From + Time From, Date To + Time To */}
-                <div className="space-y-2 md:space-y-0 md:flex md:flex-row md:flex-wrap md:gap-2 md:gap-3 md:items-end">
-                  <div className="flex gap-2 w-full md:flex-1 md:min-w-[220px] lg:min-w-[240px]">
-                    <div className="relative flex-[2] min-w-0">
-                      <Calendar className="absolute left-2 top-1/2 transform -translate-y-1/2 w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/60" />
+                  {/* Pickup - Date + Time */}
+                  <div className="col-span-2 sm:col-span-1">
+                    <label htmlFor="hero-dateFrom" className="block mb-1.5 text-[11px] font-medium uppercase tracking-wider text-gold/80">{t.contact.dateFrom}</label>
+                    <div className="relative">
+                      <Calendar className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gold/70 pointer-events-none" />
                       <input
                         type="date"
+                        id="hero-dateFrom"
                         name="dateFrom"
                         required
                         value={formData.dateFrom}
                         min={new Date().toISOString().split('T')[0]}
                         onChange={(e) => setFormData({ ...formData, dateFrom: e.target.value })}
                         disabled={status === 'loading'}
-                        className="w-full pl-8 pr-2 sm:pl-10 sm:pr-3 py-2 sm:py-2.5 sm:py-3 border-2 border-white/30 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-white outline-none transition-all text-white text-xs sm:text-sm bg-white/10 backdrop-blur-sm disabled:opacity-50"
+                        className="field pl-10 pr-2 py-3"
                       />
                     </div>
-                    <div className="relative flex-1 min-w-[80px] sm:min-w-[90px] md:min-w-[100px]">
+                  </div>
+                  <div className="col-span-2 sm:col-span-1">
+                    <label htmlFor="hero-timeFrom" className="block mb-1.5 text-[11px] font-medium uppercase tracking-wider text-gold/80">{t.contact.timeFrom}</label>
+                    <div className="relative">
+                      <Clock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gold/70 pointer-events-none" />
                       <input
                         type="time"
+                        id="hero-timeFrom"
                         name="timeFrom"
                         required
                         value={formData.timeFrom}
                         onChange={(e) => setFormData({ ...formData, timeFrom: e.target.value })}
                         disabled={status === 'loading'}
-                        className="w-full pl-2 pr-2 sm:pl-3 sm:pr-2 py-2 sm:py-2.5 sm:py-3 border-2 border-white/30 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-white outline-none transition-all text-white text-xs sm:text-sm bg-white/10 backdrop-blur-sm disabled:opacity-50"
+                        className="field pl-10 pr-2 py-3"
                       />
                     </div>
                   </div>
 
-                  <div className="flex gap-2 w-full md:flex-1 md:min-w-[220px] lg:min-w-[240px]">
-                    <div className="relative flex-[2] min-w-0">
-                      <Calendar className="absolute left-2 top-1/2 transform -translate-y-1/2 w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/60" />
+                  {/* Return - Date + Time */}
+                  <div className="col-span-2 sm:col-span-1">
+                    <label htmlFor="hero-dateTo" className="block mb-1.5 text-[11px] font-medium uppercase tracking-wider text-gold/80">{t.contact.dateTo}</label>
+                    <div className="relative">
+                      <Calendar className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gold/70 pointer-events-none" />
                       <input
                         type="date"
+                        id="hero-dateTo"
                         name="dateTo"
                         required
                         value={formData.dateTo}
                         min={formData.dateFrom || new Date().toISOString().split('T')[0]}
                         onChange={(e) => setFormData({ ...formData, dateTo: e.target.value })}
                         disabled={status === 'loading'}
-                        className="w-full pl-8 pr-2 sm:pl-10 sm:pr-3 py-2 sm:py-2.5 sm:py-3 border-2 border-white/30 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-white outline-none transition-all text-white text-xs sm:text-sm bg-white/10 backdrop-blur-sm disabled:opacity-50"
+                        className="field pl-10 pr-2 py-3"
                       />
                     </div>
-                    <div className="relative flex-1 min-w-[80px] sm:min-w-[90px] md:min-w-[100px]">
+                  </div>
+                  <div className="col-span-2 sm:col-span-1">
+                    <label htmlFor="hero-timeTo" className="block mb-1.5 text-[11px] font-medium uppercase tracking-wider text-gold/80">{t.contact.timeTo}</label>
+                    <div className="relative">
+                      <Clock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gold/70 pointer-events-none" />
                       <input
                         type="time"
+                        id="hero-timeTo"
                         name="timeTo"
                         required
                         value={formData.timeTo}
                         onChange={(e) => setFormData({ ...formData, timeTo: e.target.value })}
                         disabled={status === 'loading'}
-                        className="w-full pl-2 pr-2 sm:pl-3 sm:pr-2 py-2 sm:py-2.5 sm:py-3 border-2 border-white/30 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-white outline-none transition-all text-white text-xs sm:text-sm bg-white/10 backdrop-blur-sm disabled:opacity-50"
+                        className="field pl-10 pr-2 py-3"
                       />
                     </div>
                   </div>
@@ -349,52 +376,50 @@ function Hero() {
                   <button
                     type="submit"
                     disabled={status === 'loading'}
-                    className="w-full md:w-auto bg-white hover:bg-[#1E5BD7] text-[#0A2A66] hover:text-white font-bold px-6 sm:px-8 py-2.5 sm:py-3 rounded-xl transition-all duration-300 transform hover:scale-[1.02] hover:shadow-2xl hover:shadow-[#1E5BD7]/30 text-sm sm:text-base group disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none whitespace-nowrap"
+                    className="btn-gold col-span-2 mt-1 px-8 py-3.5 text-sm sm:text-base group whitespace-nowrap"
                   >
-                    <span className="flex items-center justify-center gap-2">
-                      {status === 'loading' ? (
-                        <>
-                          <Loader2 className="w-4 h-4 animate-spin" />
-                          <span>Sending...</span>
-                        </>
-                      ) : (
-                        <>
-                          {t.contact.submit}
-                          <span className="group-hover:translate-x-1 transition-transform">→</span>
-                        </>
-                      )}
-                    </span>
+                    {status === 'loading' ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <span>Sending...</span>
+                      </>
+                    ) : (
+                      <>
+                        {t.contact.submit}
+                        <span className="group-hover:translate-x-1 transition-transform">→</span>
+                      </>
+                    )}
                   </button>
                 </div>
-              </div>
-            </form>
+              </form>
 
-            {/* Price Calculation Display - Below Form */}
-            {formData.car && formData.dateFrom && formData.timeFrom && formData.dateTo && formData.timeTo && calculateRentalDays() > 0 && (
-              <div className="bg-white/10 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 border border-white/20 shadow-2xl mt-4 sm:mt-6 animate-fade-in-delay">
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                  <div className="flex flex-col gap-2">
-                    <p className="text-white/80 text-sm sm:text-base font-medium">
-                      Rental Period: <span className="text-white font-semibold">{calculateRentalDays()}</span> {calculateRentalDays() === 1 ? 'day' : 'days'}
-                    </p>
-                    {(() => {
-                      const selectedCar = cars.find(car => car.name === formData.car);
-                      return selectedCar ? (
-                        <p className="text-white/80 text-sm sm:text-base font-medium">
-                          Price per day: <span className="text-white font-semibold">€{getCarDailyPrice(selectedCar, formData.rentalPlan)}</span>
-                          <span className="text-white/70"> ({formData.rentalPlan === 'premium' ? 'Flex Premium' : 'Flex Basic'})</span>
-                        </p>
-                      ) : null;
-                    })()}
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-white text-xl sm:text-3xl font-bold">
-                      Total: <span className="text-white">€{calculateTotalPrice().toFixed(2)}</span>
-                    </span>
+              {/* Price Calculation Display - Below Form */}
+              {formData.car && formData.dateFrom && formData.timeFrom && formData.dateTo && formData.timeTo && calculateRentalDays() > 0 && (
+                <div className="rounded-2xl border border-gold/40 bg-gold/10 backdrop-blur-xl p-5 sm:p-6 mt-4 sm:mt-6 animate-fade-in-delay">
+                  <div className="flex flex-col gap-4">
+                    <div className="flex flex-col gap-2">
+                      <p className="text-bone/70 text-sm sm:text-base font-medium">
+                        Rental Period: <span className="text-bone font-semibold">{calculateRentalDays()}</span> {calculateRentalDays() === 1 ? 'day' : 'days'}
+                      </p>
+                      {(() => {
+                        const selectedCar = cars.find(car => car.name === formData.car);
+                        return selectedCar ? (
+                          <p className="text-bone/70 text-sm sm:text-base font-medium">
+                            Price per day: <span className="text-bone font-semibold">€{getCarDailyPrice(selectedCar, formData.rentalPlan)}</span>
+                            <span className="text-bone/60"> ({formData.rentalPlan === 'premium' ? 'Flex Premium' : 'Flex Basic'})</span>
+                          </p>
+                        ) : null;
+                      })()}
+                    </div>
+                    <div className="flex items-center gap-2 pt-4 border-t border-gold/30">
+                      <span className="text-bone text-xl sm:text-3xl font-bold whitespace-nowrap">
+                        Total: <span className="text-gold-light">€{calculateTotalPrice().toFixed(2)}</span>
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </div>
       </div>

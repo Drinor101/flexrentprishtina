@@ -1,14 +1,26 @@
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import { LanguageProvider } from './i18n/LanguageContext';
+import { CookieConsentProvider } from './consent/CookieConsentContext';
+import { prefersReducedMotion } from './lib/motion';
+import Header from './components/Header';
 import Hero from './components/Hero';
 import AboutSection from './components/AboutSection';
 import CarShowcase from './components/CarShowcase';
+import SocialSection from './components/SocialSection';
 import LocationSection from './components/LocationSection';
 import TeamSection from './components/TeamSection';
 import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
+import CookieBanner from './components/CookieBanner';
+import BackToTop from './components/BackToTop';
 
 function App() {
+  // Sections stay fully visible until this point, so a failed script never leaves the page blank
+  useLayoutEffect(() => {
+    document.documentElement.classList.add('motion-ok');
+    return () => document.documentElement.classList.remove('motion-ok');
+  }, []);
+
   useEffect(() => {
     // Scroll reveal animation
     const observerOptions = {
@@ -24,6 +36,7 @@ function App() {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           revealElement(entry.target);
+          observer.unobserve(entry.target);
         }
       });
     }, observerOptions);
@@ -43,6 +56,11 @@ function App() {
     // Re-check after layout settles (images, fonts) so below-the-fold sections still reveal
     const layoutTimer = window.setTimeout(observeScrollReveals, 100);
 
+    // Pick up elements that mount later, such as car cards after changing the filter
+    const root = document.getElementById('root');
+    const mutationObserver = new MutationObserver(observeScrollReveals);
+    if (root) mutationObserver.observe(root, { childList: true, subtree: true });
+
     // Enhanced smooth scroll with easing
     const smoothScrollTo = (targetPosition: number, duration: number = 1200) => {
       const startPosition = window.pageYOffset;
@@ -57,8 +75,9 @@ function App() {
         if (startTime === null) startTime = currentTime;
         const timeElapsed = currentTime - startTime;
         const progress = Math.min(timeElapsed / duration, 1);
-        
-        window.scrollTo(0, startPosition + distance * easeInOutCubic(progress));
+
+        // 'instant' stops the CSS smooth-scroll from restarting its own animation on every frame
+        window.scrollTo({ top: startPosition + distance * easeInOutCubic(progress), behavior: 'instant' });
 
         if (progress < 1) {
           requestAnimationFrame(animation);
@@ -72,19 +91,27 @@ function App() {
     const handleSmoothScroll = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const anchor = target.closest('a[href^="#"]') as HTMLAnchorElement;
-      
+
       if (anchor && anchor.hash) {
         e.preventDefault();
         const targetId = anchor.hash.substring(1);
         const targetElement = document.getElementById(targetId);
-        
+
         if (targetElement) {
-          const headerOffset = 80; // Offset for spacing
+          const headerOffset = targetId === 'top' || targetId === 'main' ? 0 : 80; // Offset for the fixed header
           const elementPosition = targetElement.getBoundingClientRect().top;
           const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-          // Use custom smooth scroll with slower animation
-          smoothScrollTo(offsetPosition, 1200);
+          if (prefersReducedMotion()) {
+            window.scrollTo({ top: offsetPosition, behavior: 'instant' });
+          } else {
+            // Use custom smooth scroll with slower animation
+            smoothScrollTo(offsetPosition, 1200);
+          }
+
+          // Move keyboard focus along with the view (skip link and in-page links)
+          if (!targetElement.hasAttribute('tabindex')) targetElement.setAttribute('tabindex', '-1');
+          targetElement.focus({ preventScroll: true });
         }
       }
     };
@@ -95,21 +122,30 @@ function App() {
     return () => {
       window.clearTimeout(layoutTimer);
       observer.disconnect();
+      mutationObserver.disconnect();
       document.removeEventListener('click', handleSmoothScroll);
     };
   }, []);
 
   return (
     <LanguageProvider>
-      <div className="min-h-screen bg-white">
-        <Hero />
-        <AboutSection />
-        <CarShowcase />
-        <LocationSection />
-        <TeamSection />
-        <ContactForm />
-        <Footer />
-      </div>
+      <CookieConsentProvider>
+        <div id="top" className="min-h-screen bg-ink">
+          <Header />
+          <main id="main" className="outline-none">
+            <Hero />
+            <AboutSection />
+            <CarShowcase />
+            <SocialSection />
+            <LocationSection />
+            <TeamSection />
+            <ContactForm />
+          </main>
+          <Footer />
+          <CookieBanner />
+          <BackToTop />
+        </div>
+      </CookieConsentProvider>
     </LanguageProvider>
   );
 }

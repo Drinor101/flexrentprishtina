@@ -47,6 +47,7 @@ export interface Translations {
   team: {
     title: string;
     subtitle: string;
+    role: string;
   };
   about: {
     title: string;
@@ -85,6 +86,29 @@ export interface Translations {
     airportTransfer: string;
     chauffeurService: string;
     copyright: string;
+  };
+  social: {
+    title: string;
+    subtitle: string;
+    follow: string;
+    openPost: string;
+  };
+  consent: {
+    title: string;
+    description: string;
+    accept: string;
+    reject: string;
+    settings: string;
+    mapBlocked: string;
+    mapAccept: string;
+    openInMaps: string;
+  };
+  a11y: {
+    skipToContent: string;
+    openMenu: string;
+    closeMenu: string;
+    backToTop: string;
+    language: string;
   };
 }
 
@@ -134,6 +158,7 @@ export const translations: Record<Language, Translations> = {
       sunday: 'Sunday: 10:00 AM - 4:00 PM',
     },
     team: {
+      role: 'Manager',
       title: 'Our Team',
       subtitle: 'Meet our dedicated managers who are here to ensure your rental experience is exceptional',
     },
@@ -174,6 +199,29 @@ export const translations: Record<Language, Translations> = {
       airportTransfer: 'Airport Transfer',
       chauffeurService: 'Chauffeur Service',
       copyright: '© 2025 Flex Rent Prishtina. All rights reserved.',
+    },
+    social: {
+      title: 'Latest on Instagram',
+      subtitle: 'Real photos of our fleet, straight from our Instagram page.',
+      follow: 'Follow on Instagram',
+      openPost: 'View on Instagram',
+    },
+    consent: {
+      title: 'Cookies & privacy',
+      description: 'We use cookies to load embedded content such as Google Maps. You can accept or decline; the website works either way.',
+      accept: 'Accept',
+      reject: 'Decline',
+      settings: 'Cookie settings',
+      mapBlocked: 'The interactive map needs cookies from Google. Accept cookies to load it.',
+      mapAccept: 'Accept & load map',
+      openInMaps: 'Open in Google Maps',
+    },
+    a11y: {
+      skipToContent: 'Skip to content',
+      openMenu: 'Open menu',
+      closeMenu: 'Close menu',
+      backToTop: 'Back to top',
+      language: 'Language',
     },
   },
   sq: {
@@ -221,6 +269,7 @@ export const translations: Record<Language, Translations> = {
       sunday: 'E diel: 10:00 - 16:00',
     },
     team: {
+      role: 'Menaxher',
       title: 'Ekipi Ynë',
       subtitle: 'Takohuni me menaxherët tanë të dedikuar që janë këtu për të siguruar që përvoja juaj e qirasë të jetë e jashtëzakonshme',
     },
@@ -261,6 +310,29 @@ export const translations: Record<Language, Translations> = {
       airportTransfer: 'Transferim Aeroporti',
       chauffeurService: 'Shërbim Shofer',
       copyright: '© 2025 Flex Rent Prishtina. Të gjitha të drejtat e rezervuara.',
+    },
+    social: {
+      title: 'Të fundit në Instagram',
+      subtitle: 'Foto të vërteta të flotës sonë, drejtpërdrejt nga faqja jonë në Instagram.',
+      follow: 'Na ndiqni në Instagram',
+      openPost: 'Shiko në Instagram',
+    },
+    consent: {
+      title: 'Cookies dhe privatësia',
+      description: 'Përdorim cookies për të ngarkuar përmbajtje të integruar si Google Maps. Mund t\'i pranoni ose t\'i refuzoni; faqja funksionon në të dyja rastet.',
+      accept: 'Pranoj',
+      reject: 'Refuzoj',
+      settings: 'Cilësimet e cookies',
+      mapBlocked: 'Harta interaktive kërkon cookies nga Google. Pranoni cookies për ta ngarkuar.',
+      mapAccept: 'Pranoj dhe ngarko hartën',
+      openInMaps: 'Hap në Google Maps',
+    },
+    a11y: {
+      skipToContent: 'Kalo te përmbajtja',
+      openMenu: 'Hap menynë',
+      closeMenu: 'Mbyll menynë',
+      backToTop: 'Kthehu lart',
+      language: 'Gjuha',
     },
   },
   de: {
@@ -308,6 +380,7 @@ export const translations: Record<Language, Translations> = {
       sunday: 'Sonntag: 10:00 - 16:00 Uhr',
     },
     team: {
+      role: 'Manager',
       title: 'Unser Team',
       subtitle: 'Lernen Sie unsere engagierten Manager kennen, die hier sind, um sicherzustellen, dass Ihr Miet-Erlebnis außergewöhnlich ist',
     },
@@ -348,6 +421,29 @@ export const translations: Record<Language, Translations> = {
       airportTransfer: 'Flughafentransfer',
       chauffeurService: 'Fahrerservice',
       copyright: '© 2025 Flex Rent Prishtina. Alle Rechte vorbehalten.',
+    },
+    social: {
+      title: 'Aktuell auf Instagram',
+      subtitle: 'Echte Fotos unserer Flotte, direkt von unserer Instagram-Seite.',
+      follow: 'Auf Instagram folgen',
+      openPost: 'Auf Instagram ansehen',
+    },
+    consent: {
+      title: 'Cookies & Datenschutz',
+      description: 'Wir verwenden Cookies, um eingebettete Inhalte wie Google Maps zu laden. Sie können zustimmen oder ablehnen; die Website funktioniert in beiden Fällen.',
+      accept: 'Akzeptieren',
+      reject: 'Ablehnen',
+      settings: 'Cookie-Einstellungen',
+      mapBlocked: 'Die interaktive Karte benötigt Cookies von Google. Akzeptieren Sie Cookies, um sie zu laden.',
+      mapAccept: 'Akzeptieren & Karte laden',
+      openInMaps: 'In Google Maps öffnen',
+    },
+    a11y: {
+      skipToContent: 'Zum Inhalt springen',
+      openMenu: 'Menü öffnen',
+      closeMenu: 'Menü schließen',
+      backToTop: 'Nach oben',
+      language: 'Sprache',
     },
   },
   fr: {
@@ -395,6 +491,7 @@ export const translations: Record<Language, Translations> = {
       sunday: 'Dimanche: 10:00 - 16:00',
     },
     team: {
+      role: 'Manager',
       title: 'Notre Équipe',
       subtitle: 'Rencontrez nos gestionnaires dévoués qui sont là pour garantir que votre expérience de location soit exceptionnelle',
     },
@@ -435,6 +532,29 @@ export const translations: Record<Language, Translations> = {
       airportTransfer: 'Transfert Aéroport',
       chauffeurService: 'Service de Chauffeur',
       copyright: '© 2025 Flex Rent Prishtina. Tous droits réservés.',
+    },
+    social: {
+      title: 'Nos dernières nouveautés sur Instagram',
+      subtitle: 'De vraies photos de notre flotte, directement depuis notre page Instagram.',
+      follow: 'Suivez-nous sur Instagram',
+      openPost: 'Voir sur Instagram',
+    },
+    consent: {
+      title: 'Cookies et confidentialité',
+      description: 'Nous utilisons des cookies pour charger des contenus intégrés comme Google Maps. Vous pouvez accepter ou refuser ; le site fonctionne dans les deux cas.',
+      accept: 'Accepter',
+      reject: 'Refuser',
+      settings: 'Paramètres des cookies',
+      mapBlocked: 'La carte interactive nécessite des cookies de Google. Acceptez les cookies pour la charger.',
+      mapAccept: 'Accepter et charger la carte',
+      openInMaps: 'Ouvrir dans Google Maps',
+    },
+    a11y: {
+      skipToContent: 'Aller au contenu',
+      openMenu: 'Ouvrir le menu',
+      closeMenu: 'Fermer le menu',
+      backToTop: 'Retour en haut',
+      language: 'Langue',
     },
   },
   it: {
@@ -482,6 +602,7 @@ export const translations: Record<Language, Translations> = {
       sunday: 'Domenica: 10:00 - 16:00',
     },
     team: {
+      role: 'Manager',
       title: 'Il Nostro Team',
       subtitle: 'Incontra i nostri manager dedicati che sono qui per garantire che la tua esperienza di noleggio sia eccezionale',
     },
@@ -522,6 +643,29 @@ export const translations: Record<Language, Translations> = {
       airportTransfer: 'Transfer Aeroporto',
       chauffeurService: 'Servizio Autista',
       copyright: '© 2025 Flex Rent Prishtina. Tutti i diritti riservati.',
+    },
+    social: {
+      title: 'Ultime novità su Instagram',
+      subtitle: 'Foto reali della nostra flotta, direttamente dalla nostra pagina Instagram.',
+      follow: 'Seguici su Instagram',
+      openPost: 'Guarda su Instagram',
+    },
+    consent: {
+      title: 'Cookie e privacy',
+      description: 'Utilizziamo i cookie per caricare contenuti incorporati come Google Maps. Puoi accettare o rifiutare; il sito funziona in entrambi i casi.',
+      accept: 'Accetta',
+      reject: 'Rifiuta',
+      settings: 'Impostazioni cookie',
+      mapBlocked: 'La mappa interattiva richiede i cookie di Google. Accetta i cookie per caricarla.',
+      mapAccept: 'Accetta e carica la mappa',
+      openInMaps: 'Apri in Google Maps',
+    },
+    a11y: {
+      skipToContent: 'Vai al contenuto',
+      openMenu: 'Apri il menu',
+      closeMenu: 'Chiudi il menu',
+      backToTop: 'Torna su',
+      language: 'Lingua',
     },
   },
 };

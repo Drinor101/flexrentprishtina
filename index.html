@@ -3,30 +3,78 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#0A0A0A">
     <title>Flex Rent Prishtina</title>
-    
+    <link rel="canonical" href="https://flexrentprishtina.com/">
+
     <!-- Primary Meta Tags -->
     <meta name="title" content="Flex Rent Prishtina">
     <meta name="description" content="Experience luxury and comfort with our premium fleet. Elevate your travel experience with meticulously maintained premium vehicles. Where luxury meets reliability.">
-    
+    <meta name="robots" content="index, follow, max-image-preview:large">
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://flexrentprishtina.netlify.app/">
+    <meta property="og:site_name" content="Flex Rent Prishtina">
+    <meta property="og:url" content="https://flexrentprishtina.com/">
     <meta property="og:title" content="Flex Rent Prishtina">
     <meta property="og:description" content="Experience luxury and comfort with our premium fleet. Elevate your travel experience with meticulously maintained premium vehicles. Where luxury meets reliability.">
-    <!-- Add your custom OG image here when ready: <meta property="og:image" content="https://flexrentprishtina.netlify.app/og-image.jpg"> -->
-    
+    <meta property="og:image" content="https://flexrentprishtina.com/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Flex Rent Prishtina: black BMW X5 under the illuminated Flex Rent sign">
+
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://flexrentprishtina.netlify.app/">
-    <meta property="twitter:title" content="Flex Rent Prishtina">
-    <meta property="twitter:description" content="Experience luxury and comfort with our premium fleet. Elevate your travel experience with meticulously maintained premium vehicles. Where luxury meets reliability.">
-    <!-- Add your custom Twitter image here when ready: <meta property="twitter:image" content="https://flexrentprishtina.netlify.app/og-image.jpg"> -->
-</head>
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://flexrentprishtina.com/">
+    <meta name="twitter:title" content="Flex Rent Prishtina">
+    <meta name="twitter:description" content="Experience luxury and comfort with our premium fleet. Elevate your travel experience with meticulously maintained premium vehicles. Where luxury meets reliability.">
+    <meta name="twitter:image" content="https://flexrentprishtina.com/og-image.jpg">
+
+    <!-- Structured data for local search results -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "AutoRental",
+        "name": "Flex Rent Prishtina",
+        "url": "https://flexrentprishtina.com/",
+        "image": "https://flexrentprishtina.com/og-image.jpg",
+        "description": "Car rental with airport pickup at Pristina Adem Jashari International Airport. Recent, reliable and carefully maintained vehicles.",
+        "telephone": "+38345343430",
+        "email": "info@flexrentprishtina.com",
+        "priceRange": "€30 - €120 per day",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Astrit Suli 15",
+          "addressLocality": "Prishtina",
+          "postalCode": "10000",
+          "addressCountry": "XK"
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "08:00",
+            "closes": "20:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Saturday",
+            "opens": "09:00",
+            "closes": "18:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Sunday",
+            "opens": "10:00",
+            "closes": "16:00"
+          }
+        ],
+        "sameAs": ["https://www.instagram.com/flexrentprishtina/"]
+      }
+    </script>
+  </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>

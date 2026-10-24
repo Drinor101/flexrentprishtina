@@ -3,6 +3,7 @@ import { Plane, Fuel, CreditCard } from 'lucide-react';
 import CarCard from './CarCard';
 import { useLanguage } from '../i18n/LanguageContext';
 import { cars } from '../data/cars';
+import { stagger } from '../lib/motion';
 
 function CarShowcase() {
   const { t } = useLanguage();
@@ -10,7 +11,7 @@ function CarShowcase() {
 
   // Get unique brand categories from actual cars
   const availableCategories = Array.from(new Set(cars.map(car => car.category)));
-  
+
   let filteredCars = filter === 'all'
     ? cars
     : cars.filter(car => car.category === filter);
@@ -23,23 +24,31 @@ function CarShowcase() {
   // Build filter options: 'all' + available brand categories
   const filterOptions = ['all', ...availableCategories.sort()];
 
+  const features = [
+    { icon: Plane, title: t.cars.vipAirportDelivery, description: t.cars.vipAirportDeliveryDesc },
+    { icon: Fuel, title: t.cars.fullTank, description: t.cars.fullTankDesc },
+    { icon: CreditCard, title: t.cars.paymentOnSite, description: t.cars.paymentOnSiteDesc },
+  ];
+
   return (
-    <section id="cars" className="pt-12 sm:pt-16 pb-24 sm:pb-28 bg-gradient-to-b from-white via-gray-50 to-white">
+    <section id="cars" className="pt-2 sm:pt-4 pb-16 sm:pb-20 lg:pb-24 bg-ink">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Filter Buttons - Dynamically generated from actual car categories */}
         {filterOptions.length > 1 && (
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-12 sm:mb-16 scroll-reveal px-2">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10 sm:mb-12 scroll-reveal px-2">
             {filterOptions.map((category) => (
               <button
                 key={category}
+                type="button"
                 onClick={() => setFilter(category)}
-                className={`px-4 sm:px-6 py-2 sm:py-3 rounded-full font-semibold text-xs sm:text-sm md:text-base transition-all duration-300 transform hover:scale-105 ${
+                aria-pressed={filter === category}
+                className={`px-5 sm:px-7 py-2 sm:py-2.5 rounded-full font-semibold text-xs sm:text-sm tracking-wide border ${
                   filter === category
-                    ? 'bg-[#0A2A66] text-white shadow-lg shadow-[#0A2A66]/30 scale-105'
-                    : 'bg-white text-[#0A0A0A] hover:bg-gray-50 border-2 border-gray-200 hover:border-[#1E5BD7]/50'
+                    ? 'bg-gradient-to-br from-gold-light via-gold to-gold-dark text-ink border-transparent shadow-lg shadow-gold/20'
+                    : 'bg-transparent text-bone/70 border-white/15 hover:border-gold/60 hover:text-gold-light'
                 }`}
               >
-                {category === 'all' 
+                {category === 'all'
                   ? t.cars.allFilter || 'All'
                   : category}
               </button>
@@ -47,44 +56,32 @@ function CarShowcase() {
           </div>
         )}
 
-        {/* Car Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 mb-16 sm:mb-24">
+        {/* Car Grid - wraps and centers, so an incomplete last row never leaves a gap on one side */}
+        <div className="flex flex-wrap justify-center gap-6 sm:gap-8 mb-12 sm:mb-16">
           {filteredCars.map((car, index) => (
-            <CarCard key={car.id} car={car} index={index} />
+            <div key={car.id} className="flex w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.334rem)]">
+              <CarCard car={car} index={index} />
+            </div>
           ))}
         </div>
 
         {/* Features Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 scroll-reveal">
-          <div className="bg-white p-6 sm:p-8 lg:p-10 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 text-center group border border-gray-100 hover:border-[#1E5BD7]/30">
-            <div className="w-20 h-20 bg-gradient-to-br from-[#0A2A66]/10 to-[#12408C]/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg">
-              <Plane className="w-10 h-10 text-[#0A2A66]" />
+        <div id="services" className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+          {features.map(({ icon: Icon, title, description }, index) => (
+            <div
+              key={title}
+              className="surface-card scroll-reveal p-6 sm:p-8 lg:p-10 text-center group"
+              style={stagger(index * 120)}
+            >
+              <div className="w-16 h-16 rounded-full border border-gold/40 bg-gold/10 flex items-center justify-center mx-auto mb-6 group-hover:bg-gold/20 group-hover:border-gold transition-all duration-300">
+                <Icon className="w-7 h-7 text-gold" />
+              </div>
+              <h3 className="font-display text-xl sm:text-2xl font-semibold text-bone mb-3">{title}</h3>
+              <p className="text-sm sm:text-base text-bone/60 leading-relaxed font-light">
+                {description}
+              </p>
             </div>
-            <h3 className="text-xl sm:text-2xl font-bold text-[#0A0A0A] mb-3">{t.cars.vipAirportDelivery}</h3>
-            <p className="text-sm sm:text-base text-[#0A0A0A]/70 leading-relaxed">
-              {t.cars.vipAirportDeliveryDesc}
-            </p>
-          </div>
-
-          <div className="bg-white p-6 sm:p-8 lg:p-10 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 text-center group border border-gray-100 hover:border-[#1E5BD7]/30">
-            <div className="w-20 h-20 bg-gradient-to-br from-[#0A2A66]/10 to-[#12408C]/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg">
-              <Fuel className="w-10 h-10 text-[#0A2A66]" />
-            </div>
-            <h3 className="text-xl sm:text-2xl font-bold text-[#0A0A0A] mb-3">{t.cars.fullTank}</h3>
-            <p className="text-sm sm:text-base text-[#0A0A0A]/70 leading-relaxed">
-              {t.cars.fullTankDesc}
-            </p>
-          </div>
-
-          <div className="bg-white p-6 sm:p-8 lg:p-10 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 text-center group border border-gray-100 hover:border-[#1E5BD7]/30">
-            <div className="w-20 h-20 bg-gradient-to-br from-[#0A2A66]/10 to-[#12408C]/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg">
-              <CreditCard className="w-10 h-10 text-[#0A2A66]" />
-            </div>
-            <h3 className="text-xl sm:text-2xl font-bold text-[#0A0A0A] mb-3">{t.cars.paymentOnSite}</h3>
-            <p className="text-sm sm:text-base text-[#0A0A0A]/70 leading-relaxed">
-              {t.cars.paymentOnSiteDesc}
-            </p>
-          </div>
+          ))}
         </div>
       </div>
     </section>

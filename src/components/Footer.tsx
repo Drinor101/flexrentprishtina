@@ -1,52 +1,57 @@
-import { Car, Facebook, Instagram, Twitter, Linkedin, Phone, MapPin } from 'lucide-react';
+import { Car, Instagram, Phone, MapPin, Cookie } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
+import { useCookieConsent } from '../consent/CookieConsentContext';
+import { INSTAGRAM_HANDLE, INSTAGRAM_URL } from '../data/instagram';
 
 function Footer() {
   const { t } = useLanguage();
+  const { openSettings } = useCookieConsent();
+
+  const linkClass = 'text-bone/70 hover:text-gold-light transition-colors duration-300 text-base sm:text-lg flex items-center gap-2 group font-light';
 
   return (
-    <footer className="bg-gradient-to-b from-[#0A2A66] via-[#12408C] to-[#0A2A66] text-white py-16 sm:py-20">
+    <footer className="relative bg-black text-bone pt-16 sm:pt-20 pb-10 border-t border-gold/20">
+      <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold to-transparent"></span>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-12">
           {/* Brand Section */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-6">
-              <div className="relative">
-                <Car className="w-10 h-10 text-white" />
-                <div className="absolute inset-0 bg-white/20 blur-xl"></div>
+              <div className="w-11 h-11 rounded-lg border border-gold/50 bg-gold/10 flex items-center justify-center">
+                <Car className="w-6 h-6 text-gold" />
               </div>
-              <span className="text-2xl font-bold">Flex Rent</span>
+              <span className="font-display text-2xl font-bold text-bone">Flex Rent</span>
             </div>
-            <p className="text-white/80 leading-relaxed text-lg">
+            <p className="text-bone/60 leading-relaxed text-base sm:text-lg font-light">
               {t.footer.description}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-xl font-bold mb-6 text-white">{t.footer.quickLinks}</h4>
+            <h4 className="font-display text-xl font-semibold mb-6 text-gold-light">{t.footer.quickLinks}</h4>
             <ul className="space-y-3">
               <li>
-                <a href="#" className="text-white/80 hover:text-[#1E5BD7] transition-colors duration-300 text-lg flex items-center gap-2 group">
-                  <span className="w-0 h-0.5 bg-[#1E5BD7] group-hover:w-4 transition-all duration-300"></span>
+                <a href="#about" className={linkClass}>
+                  <span className="w-0 h-px bg-gold group-hover:w-4 transition-all duration-300"></span>
                   {t.footer.about}
                 </a>
               </li>
               <li>
-                <a href="#cars" className="text-white/80 hover:text-[#1E5BD7] transition-colors duration-300 text-lg flex items-center gap-2 group">
-                  <span className="w-0 h-0.5 bg-[#1E5BD7] group-hover:w-4 transition-all duration-300"></span>
+                <a href="#cars" className={linkClass}>
+                  <span className="w-0 h-px bg-gold group-hover:w-4 transition-all duration-300"></span>
                   {t.footer.fleet}
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white/80 hover:text-[#1E5BD7] transition-colors duration-300 text-lg flex items-center gap-2 group">
-                  <span className="w-0 h-0.5 bg-[#1E5BD7] group-hover:w-4 transition-all duration-300"></span>
+                <a href="#services" className={linkClass}>
+                  <span className="w-0 h-px bg-gold group-hover:w-4 transition-all duration-300"></span>
                   {t.footer.servicesLink}
                 </a>
               </li>
               <li>
-                <a href="#contact" className="text-white/80 hover:text-[#1E5BD7] transition-colors duration-300 text-lg flex items-center gap-2 group">
-                  <span className="w-0 h-0.5 bg-[#1E5BD7] group-hover:w-4 transition-all duration-300"></span>
+                <a href="#contact" className={linkClass}>
+                  <span className="w-0 h-px bg-gold group-hover:w-4 transition-all duration-300"></span>
                   {t.footer.contactLink}
                 </a>
               </li>
@@ -55,26 +60,26 @@ function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-xl font-bold mb-6 text-white">{t.location.phone}</h4>
+            <h4 className="font-display text-xl font-semibold mb-6 text-gold-light">{t.location.phone}</h4>
             <ul className="space-y-4">
               <li>
-                <a href="tel:+38345343430" className="text-white/80 hover:text-[#1E5BD7] transition-colors duration-300 text-lg flex items-start gap-3 group">
-                  <Phone className="w-5 h-5 mt-1 flex-shrink-0 text-[#1E5BD7]" />
+                <a href="tel:+38345343430" className="text-bone/70 hover:text-gold-light transition-colors duration-300 text-base sm:text-lg flex items-start gap-3 group font-light">
+                  <Phone className="w-5 h-5 mt-1 flex-shrink-0 text-gold" />
                   <span>+383 45 343 430</span>
                 </a>
               </li>
               <li>
-                <a href="tel:+41799329445" className="text-white/80 hover:text-[#1E5BD7] transition-colors duration-300 text-lg flex items-start gap-3 group">
-                  <Phone className="w-5 h-5 mt-1 flex-shrink-0 text-[#1E5BD7]" />
+                <a href="tel:+41799329445" className="text-bone/70 hover:text-gold-light transition-colors duration-300 text-base sm:text-lg flex items-start gap-3 group font-light">
+                  <Phone className="w-5 h-5 mt-1 flex-shrink-0 text-gold" />
                   <span>+41 79 932 94 45</span>
                 </a>
               </li>
             </ul>
-            
-            <h4 className="text-xl font-bold mb-6 text-white mt-8">{t.location.address}</h4>
+
+            <h4 className="font-display text-xl font-semibold mb-6 text-gold-light mt-8">{t.location.address}</h4>
             <div className="flex items-start gap-3">
-              <MapPin className="w-5 h-5 mt-1 flex-shrink-0 text-[#1E5BD7]" />
-              <p className="text-white/80 text-lg leading-relaxed">
+              <MapPin className="w-5 h-5 mt-1 flex-shrink-0 text-gold" />
+              <p className="text-bone/70 text-base sm:text-lg leading-relaxed font-light">
                 no. 15 Astrit Suli<br />
                 Prishtina 10000
               </p>
@@ -83,44 +88,33 @@ function Footer() {
 
           {/* Social Media */}
           <div>
-            <h4 className="text-xl font-bold mb-6 text-white">{t.footer.followUs}</h4>
-            <div className="flex gap-4">
-              <a 
-                href="#" 
-                className="w-12 h-12 bg-white/10 hover:bg-[#1E5BD7] rounded-xl flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:rotate-3 hover:shadow-lg hover:shadow-[#1E5BD7]/50 group"
-                aria-label="Facebook"
-              >
-                <Facebook className="w-6 h-6 text-white group-hover:text-white transition-colors" />
-              </a>
-              <a 
-                href="https://www.instagram.com/flexrentprishtina/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="w-12 h-12 bg-white/10 hover:bg-[#1E5BD7] rounded-xl flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:rotate-3 hover:shadow-lg hover:shadow-[#1E5BD7]/50 group"
-                aria-label="Instagram"
-              >
-                <Instagram className="w-6 h-6 text-white group-hover:text-white transition-colors" />
-              </a>
-              <a 
-                href="#" 
-                className="w-12 h-12 bg-white/10 hover:bg-[#1E5BD7] rounded-xl flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:rotate-3 hover:shadow-lg hover:shadow-[#1E5BD7]/50 group"
-                aria-label="Twitter"
-              >
-                <Twitter className="w-6 h-6 text-white group-hover:text-white transition-colors" />
-              </a>
-              <a 
-                href="#" 
-                className="w-12 h-12 bg-white/10 hover:bg-[#1E5BD7] rounded-xl flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:rotate-3 hover:shadow-lg hover:shadow-[#1E5BD7]/50 group"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="w-6 h-6 text-white group-hover:text-white transition-colors" />
-              </a>
-            </div>
+            <h4 className="font-display text-xl font-semibold mb-6 text-gold-light">{t.footer.followUs}</h4>
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-3 text-bone/80 hover:text-gold-light"
+            >
+              <span className="flex h-11 w-11 items-center justify-center rounded-lg border border-white/15 group-hover:border-gold group-hover:bg-gold">
+                <Instagram className="h-5 w-5 text-bone group-hover:text-ink" aria-hidden="true" />
+              </span>
+              <span className="text-base font-light sm:text-lg">{INSTAGRAM_HANDLE}</span>
+            </a>
           </div>
         </div>
 
-        <div className="border-t border-white/20 pt-8 text-center">
-          <p className="text-white/80 text-lg">{t.footer.copyright}</p>
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 sm:flex-row">
+          <p className="text-bone/50 text-sm sm:text-base font-light text-center sm:text-left">
+            {t.footer.copyright.replace('2025', String(new Date().getFullYear()))}
+          </p>
+          <button
+            type="button"
+            onClick={openSettings}
+            className="inline-flex items-center gap-2 text-sm font-light text-bone/50 hover:text-gold-light"
+          >
+            <Cookie className="h-4 w-4" aria-hidden="true" />
+            {t.consent.settings}
+          </button>
         </div>
       </div>
     </footer>
