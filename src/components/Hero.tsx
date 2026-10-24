@@ -159,7 +159,7 @@ function Hero() {
           alt=""
           aria-hidden="true"
           width={1280}
-          height={960}
+          height={980}
           decoding="async"
           className="h-full w-full object-cover will-change-transform"
         />

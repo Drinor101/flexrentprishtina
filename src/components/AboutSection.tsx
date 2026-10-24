@@ -1,7 +1,7 @@
 import { useLanguage } from '../i18n/LanguageContext';
 import { stagger } from '../lib/motion';
-import poloGoldenHour from '../assets/social/polo-golden-hour.webp';
-import bmwX5Interior from '../assets/social/bmw-x5-interior.webp';
+import tiguanFlag from '../assets/social/tiguan-flag.webp';
+import audiQ3 from '../assets/social/audi-q3.webp';
 
 function AboutSection() {
   const { t } = useLanguage();
@@ -36,9 +36,9 @@ function AboutSection() {
             <div className="scroll-reveal relative" data-reveal="right">
               <span className="absolute -bottom-3 -left-3 right-3 top-3 rounded-2xl border border-gold/40 lg:-bottom-4 lg:-left-4 lg:right-4 lg:top-4" aria-hidden="true"></span>
               <img
-                src={poloGoldenHour}
-                alt="Volkswagen Polo at golden hour"
-                width={640}
+                src={tiguanFlag}
+                alt="Black Volkswagen Tiguan at sunset with the Kosovo flag"
+                width={515}
                 height={640}
                 loading="lazy"
                 decoding="async"
@@ -51,8 +51,8 @@ function AboutSection() {
               style={stagger(350)}
             >
               <img
-                src={bmwX5Interior}
-                alt="BMW X5 interior with tan leather seats"
+                src={audiQ3}
+                alt="White Audi Q3 in a parking lot with a low sun"
                 width={640}
                 height={640}
                 loading="lazy"
